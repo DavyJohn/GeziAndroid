@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
+    defaultConfig {
+        applicationId "com.geziwulian.geziandroid"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            pseudoLocalesEnabled true
+            zipAlignEnabled true
+        }
+    }
+
+    productFlavors {
+        x86 {
+            ndk {
+                abiFilter "x86"
+            }
+        }
+        arm {
+            ndk {
+                abiFilter "armeabi-v7a"
+            }
+        }
+        mips {
+            ndk {
+                abiFilter "mips"
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.afollestad.material-dialogs:core:0.8.6.2'
+    compile 'com.github.JayFang1993:DropDownMenu:v0.9'
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+    compile 'com.leaking.slideswitch:slideswitch:1.0.0'
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile project(':netlibrary')
+    compile 'com.jakewharton:butterknife:8.2.1'
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
+}
