@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.main.MainActivity;
+import com.geziwulian.geziandroid.ui.swipebacklayout.SwipeBackActivity;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 

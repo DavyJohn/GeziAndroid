@@ -12,6 +12,7 @@ import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.activity.LoginActivity;
 import com.geziwulian.geziandroid.activity.LoginDemoActivity;
+import com.geziwulian.geziandroid.activity.SettingActivity;
 import com.geziwulian.geziandroid.ui.PullToZoomScrollView;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
@@ -83,7 +84,8 @@ public class MineFragment extends BaseFragment {
         scrollView.getPullRootView().findViewById(R.id.textSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "设置", Toast.LENGTH_SHORT).show();
+                startActivity(SettingActivity.class);
+
             }
         });
 

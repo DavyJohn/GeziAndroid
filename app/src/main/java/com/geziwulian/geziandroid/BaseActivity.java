@@ -1,25 +1,17 @@
 package com.geziwulian.geziandroid;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import com.geziwulian.netlibrary.HttpClient;
-import com.squareup.picasso.Transformation;
-
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -31,9 +23,6 @@ import cn.jpush.android.api.JPushInterface;
 import rx.Subscriber;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
-
-import static android.graphics.Bitmap.createBitmap;
-
 
 /**
  * Created by yyx on 16/1/5.
@@ -68,6 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mContext = this;
         baseApplication.addActivity(this);
         mCompositeSubscription = new CompositeSubscription();
+        // 添加Activity到堆栈
         AppManager.getAppManager().addActivity(this);
 
     }
@@ -305,6 +295,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //一旦调用了 CompositeSubscription.unsubscribe()，这个CompositeSubscription对象就不可用了,
         // 如果还想使用CompositeSubscription，就必须在创建一个新的对象了。
         mCompositeSubscription.unsubscribe();
+        //结束Activity从堆栈中移除
         AppManager.getAppManager().finishActivity(this);
     }
 
@@ -319,18 +310,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onPause();
         JPushInterface.onPause(mContext);
     }
-
-    @TargetApi(19)
-    protected void setTranslucentStatus() {
-        Window window = getWindow();
-        // Translucent status bar
-        window.setFlags(
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        // Translucent navigation bar
-//        window.setFlags(
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-    }
-
 }
