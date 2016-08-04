@@ -1,5 +1,6 @@
 package com.geziwulian.geziandroid;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,8 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -65,6 +68,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         mContext = this;
         baseApplication.addActivity(this);
         mCompositeSubscription = new CompositeSubscription();
+        AppManager.getAppManager().addActivity(this);
+
     }
 
     @Override
@@ -98,7 +103,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     showToast("连接超时,请检查网络!");
                 } else if (e instanceof ConnectException) {
                     showToast("网络连接有问题!");
-                }else if (e instanceof UnknownHostException){
+                } else if (e instanceof UnknownHostException) {
                     showToast("请检查您的网络连接!");
                 }
                 dismissProgressDialog();
@@ -129,14 +134,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Debug输出Log信息
+     *
      * @param msg
      */
     protected void debugLog(String msg) {
-        Log.e(TAG, "++++++++++++++++++++++++:"+msg);
+        Log.e(TAG, "++++++++++++++++++++++++:" + msg);
     }
 
     /**
      * Error输出Log信息
+     *
      * @param msg
      */
     protected void errorLog(String msg) {
@@ -145,6 +152,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Info输出Log信息
+     *
      * @param msg
      */
     protected void showLog(String msg) {
@@ -153,6 +161,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 长时间显示Toast提示(来自String)
+     *
      * @param message
      */
     protected void showToast(String message) {
@@ -161,6 +170,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 长时间显示Toast提示(来自res)
+     *
      * @param resId
      */
     protected void showToast(int resId) {
@@ -169,6 +179,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 短暂显示Toast提示(来自res)
+     *
      * @param resId
      */
     protected void showShortToast(int resId) {
@@ -177,13 +188,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 短暂显示Toast提示(来自String)
+     *
      * @param text
      */
     protected void showShortToast(String text) {
         Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
     }
 
-    protected void showDialog(String title,String msg){
+    protected void showDialog(String title, String msg) {
         new MaterialDialog.Builder(this)
                 .title(title)
                 .content(msg)
@@ -193,30 +205,31 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 消息提示对话框
+     *
      * @param title
      * @param msg
      */
-    protected void showProgressDialog(String title,String msg){
-        if (progressDialog != null){
+    protected void showProgressDialog(String title, String msg) {
+        if (progressDialog != null) {
             progressDialog.show();
-        }else {
+        } else {
             progressDialog = new MaterialDialog.Builder(this)
                     .title(title)
                     .content(msg)
-                    .progress(true,2)
+                    .progress(true, 2)
                     .build();
             progressDialog.show();
         }
     }
 
-    protected void dismissProgressDialog(){
-        if (progressDialog != null && progressDialog.isShowing()){
+    protected void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
     }
 
-    protected static String getTagName(Class<?> cls){
-        return cls.getPackage().getName()+"|"+cls.getSimpleName();
+    protected static String getTagName(Class<?> cls) {
+        return cls.getPackage().getName() + "|" + cls.getSimpleName();
     }
 
     /**
@@ -270,8 +283,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-
-
     /**
      * 带有右进右出动画的退出
      */
@@ -290,12 +301,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        progressDialog.dismiss();
-        unbinder.unbind();
+        if (progressDialog != null) progressDialog.dismiss();
         //一旦调用了 CompositeSubscription.unsubscribe()，这个CompositeSubscription对象就不可用了,
         // 如果还想使用CompositeSubscription，就必须在创建一个新的对象了。
         mCompositeSubscription.unsubscribe();
-
+        AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
@@ -308,39 +318,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         JPushInterface.onPause(mContext);
-    }   public class CircleTransform implements Transformation {
-        @Override
-        public Bitmap transform(Bitmap source) {
-            int size = Math.min(source.getWidth(), source.getHeight());
+    }
 
-            int x = (source.getWidth() - size) / 2;
-            int y = (source.getHeight() - size) / 2;
-
-            Bitmap squaredBitmap = createBitmap(source, x, y, size, size);
-            if (squaredBitmap != source) {
-                source.recycle();
-            }
-
-            Bitmap bitmap = createBitmap(size, size, source.getConfig());
-
-            Canvas canvas = new Canvas(bitmap);
-            Paint paint = new Paint();
-            BitmapShader shader = new BitmapShader(squaredBitmap,
-                    BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
-            paint.setShader(shader);
-            paint.setAntiAlias(true);
-
-            float r = size / 2f;
-            canvas.drawCircle(r, r, r, paint);
-
-            squaredBitmap.recycle();
-            return bitmap;
-        }
-
-        @Override
-        public String key() {
-            return "circle";
-        }
+    @TargetApi(19)
+    protected void setTranslucentStatus() {
+        Window window = getWindow();
+        // Translucent status bar
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        // Translucent navigation bar
+//        window.setFlags(
+//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
     }
 
 }

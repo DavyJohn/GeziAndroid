@@ -6,7 +6,7 @@ import android.content.Context;
 
 
 import com.geziwulian.netlibrary.HttpClient;
-import com.tencent.bugly.crashreport.CrashReport;
+
 
 import java.util.ArrayList;
 
@@ -21,19 +21,28 @@ import io.realm.RealmConfiguration;
 public final class BaseApplication extends Application {
 
     private static Context appContext;
-
+    private static BaseApplication app;
+    public BaseApplication(){
+        app = this;
+    }
     /**
      * Activity集合
      */
     private static ArrayList<BaseActivity> activitys = new ArrayList<BaseActivity>();
 
+    public static synchronized BaseApplication getInstance() {
+        if (app == null) {
+            app = new BaseApplication();
+        }
+        return app;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
         appContext = this;
         JPushInterface.setDebugMode(true);
         JPushInterface.init(appContext);
-        CrashReport.initCrashReport(appContext, "900021610", true);
+//        CrashReport.initCrashReport(appContext, "900021610", true);
         HttpClient.init(appContext);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(this)
                 .name("default.realm")

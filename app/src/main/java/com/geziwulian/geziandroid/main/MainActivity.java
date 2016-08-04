@@ -4,28 +4,61 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
-import com.geziwulian.netlibrary.ApiWrapper;
-import com.geziwulian.netlibrary.model.dinner.BannerData;
+import com.geziwulian.geziandroid.fragment.home.HomeFragment;
+import com.geziwulian.geziandroid.fragment.mine.MineFragment;
+import com.geziwulian.geziandroid.fragment.order.OrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import rx.Subscription;
-import rx.functions.Action1;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = getTagName(MainActivity.class);
 
+    @BindView(R.id.main_toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.home_text)
+    TextView mHomeText;
+    @BindView(R.id.order_text)
+    TextView mOrderText;
+    @BindView(R.id.mine_text)
+    TextView mMineText;
     @BindView(R.id.main_viewpager)
     ViewPager mPager;
+
+    @OnClick(R.id.home_linear)
+    void clickhome() {
+        mPager.setCurrentItem(0);
+        setTab(0);
+        setUpToolbar(0);
+    }
+
+    @OnClick(R.id.order_linear)
+    void clickorder() {
+        mPager.setCurrentItem(1);
+        setTab(1);
+        setUpToolbar(1);
+
+    }
+
+    @OnClick(R.id.mine_linear)
+    void clickmine() {
+        mPager.setCurrentItem(2);
+        setTab(2);
+        setUpToolbar(2);
+
+    }
+
     private List<Fragment> listFragment = new ArrayList<Fragment>();
     private FragmentPagerAdapter pagerAdapter;
 
@@ -33,20 +66,100 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initTest();
+        initFragment();
+        setUpToolbar(0);
+
     }
 
-    private void initTest() {
-        final ApiWrapper  w = new ApiWrapper();
-        Subscription s = w.loadBanner()
-                .subscribe(newSubscriber(new Action1<List<BannerData>>() {
-                    @Override
-                    public void call(List<BannerData> bannerDatas) {
-                        Log.e("=======",bannerDatas+"");
-                        System.out.print(bannerDatas);
-                    }
-                }));
-        mCompositeSubscription.add(s);
+    private void setUpToolbar(int index){
+        switch (index){
+            case 0:
+                TextView mToolTitleHome = (TextView) mToolbar.findViewById(R.id.tooltitle);
+                mToolTitleHome.setText(R.string.home);
+                mToolbar.setTitle("");
+                setSupportActionBar(mToolbar);
+                break;
+            case 1:
+                TextView mToolTitleOrder = (TextView) mToolbar.findViewById(R.id.tooltitle);
+                mToolTitleOrder.setText(R.string.order);
+                mToolbar.setTitle("");
+                setSupportActionBar(mToolbar);
+                break;
+            case 2:
+                TextView mToolTitleMine = (TextView) mToolbar.findViewById(R.id.tooltitle);
+                mToolTitleMine.setText(R.string.mine);
+                mToolbar.setTitle("");
+                setSupportActionBar(mToolbar);
+                break;
+        }
+    }
+
+    private void initFragment() {
+        Fragment home = new HomeFragment();
+        Fragment order = new OrderFragment();
+        Fragment mine = new MineFragment();
+
+        listFragment.add(home);
+        listFragment.add(order);
+        listFragment.add(mine);
+
+        pagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return listFragment.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return listFragment.size();
+            }
+        };
+
+        mPager.setAdapter(pagerAdapter);
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                int num = mPager.getCurrentItem();
+                setTab(num);
+                setUpToolbar(num);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    private void setTab(int index) {
+        clean();
+        switch (index) {
+            case 0:
+                mHomeText.setTextSize(16);
+                break;
+            case 1:
+                mOrderText.setTextSize(16);
+                break;
+            case 2:
+                mMineText.setTextSize(16);
+                break;
+        }
+    }
+
+    private void clean() {
+        mOrderText.setTextSize(10);
+        mMineText.setTextSize(10);
+        mHomeText.setTextSize(10);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setTab(0);
     }
 
     @Override
@@ -54,4 +167,5 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
     }
+
 }
