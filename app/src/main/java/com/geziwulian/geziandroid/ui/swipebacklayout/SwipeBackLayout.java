@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewCompat;
-
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,13 +15,11 @@ import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.ui.swipebacklayout.ViewDragHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 志浩 on 2016/8/4.
- */
 public class SwipeBackLayout extends FrameLayout {
     /**
      * Minimum velocity that will be detected as a fling
@@ -150,11 +147,11 @@ public class SwipeBackLayout extends FrameLayout {
         setEdgeTrackingEnabled(mode);
 
         int shadowLeft = a.getResourceId(R.styleable.SwipeBackLayout_shadow_left,
-                R.mipmap.shadow_left);
+                R.drawable.shadow_left);
         int shadowRight = a.getResourceId(R.styleable.SwipeBackLayout_shadow_right,
-                R.mipmap.shadow_right);
+                R.drawable.shadow_right);
         int shadowBottom = a.getResourceId(R.styleable.SwipeBackLayout_shadow_bottom,
-                R.mipmap.shadow_bottom);
+                R.drawable.shadow_bottom);
         setShadow(shadowLeft, EDGE_LEFT);
         setShadow(shadowRight, EDGE_RIGHT);
         setShadow(shadowBottom, EDGE_BOTTOM);

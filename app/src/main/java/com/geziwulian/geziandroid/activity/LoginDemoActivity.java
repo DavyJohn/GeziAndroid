@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.main.MainActivity;
-import com.geziwulian.geziandroid.ui.swipebacklayout.SwipeBackActivity;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -75,7 +74,6 @@ public class LoginDemoActivity extends BaseActivity implements View.OnClickListe
         Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,3,5-9]))\\d{8}$");
         Matcher m = p.matcher(mobiles);
         return m.matches();
-
     }
 
     private void hideKeyboard() {
