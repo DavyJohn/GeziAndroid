@@ -67,13 +67,12 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onTick(long millisUntilFinished) {
             // TODO Auto-generated method stub
-            mBtnCode.setClickable(false);// 设置不能点击
-            mBtnCode.setText(millisUntilFinished / 1000 + "秒后重新发送");// 设置倒计时时间
-            Spannable span = new SpannableString(mBtnCode.getText()
-                    .toString());// 获取按钮的文字
-            span.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(),R.color.red)), 0, 2,
-                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE);// 讲倒计时时间显示为红色
-            mBtnCode.setText(span);
+            mBtnCode.setClickable(false);
+            mBtnCode.setText(millisUntilFinished / 1000 + "秒后重新发送");
+//            Spannable span = new SpannableString(millisUntilFinished / 1000 + "秒后重新发送");
+//            span.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(),R.color.red)), 0, 1,
+//                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE);// 倒计时时间显示为红色
+//            mBtnCode.setText(span);
         }
 
         @Override
@@ -82,7 +81,6 @@ public class LoginActivity extends BaseActivity {
             mBtnCode.setClickable(true);// 重新获得点击
         }
     };
-
 
     @Override
     protected void onStart() {
