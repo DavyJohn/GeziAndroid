@@ -60,13 +60,14 @@
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginDemoActivity"
+        <activity android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MineOrderActivity"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/maincolor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/app_log"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/login_bg">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/rl_1"
@@ -16,7 +28,6 @@
             android:layout_height="90.0dip"
             android:layout_marginLeft="18.0dip"
             android:layout_marginRight="18.0dip"
-            android:layout_marginTop="200.0dip"
             android:background="@drawable/login_rect_white">
 
             <RelativeLayout
@@ -78,8 +89,8 @@
 
                     <EditText
                         android:id="@+id/code"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="验证码"
                         android:inputType="number"
@@ -94,7 +105,7 @@
 
                 <Button
                     android:id="@+id/btnGetCode"
-                    android:layout_width="94.0dip"
+                    android:layout_width="100.0dip"
                     android:layout_height="33.0dip"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -103,8 +114,8 @@
                     android:clickable="true"
                     android:enabled="true"
                     android:text="获取验证码"
-                    android:textColor="#ff888888"
-                    android:textSize="14.0sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_12"/>
             </RelativeLayout>
         </RelativeLayout>
 
@@ -131,4 +142,4 @@
             android:background="@mipmap/login_close"/>
 
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

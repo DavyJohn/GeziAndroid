@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical">
+              android:orientation="vertical"
+    android:background="@color/maincolor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,9 +29,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:orientation="vertical"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,65 +42,65 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/login_phone"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/login_phone"/>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/phone_inputlayout"
+                style="@style/Widget.Design.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/phone_inputlayout"
                 app:counterEnabled="true"
                 app:counterMaxLength="11"
-                app:hintAnimationEnabled="true"
                 app:counterOverflowTextAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                style="@style/Widget.Design.TextInputLayout"
-                app:errorEnabled="true">
+                app:errorEnabled="true"
+                app:hintAnimationEnabled="true">
 
                 <EditText
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/user_name"
+                    android:inputType="number"
                     android:maxLength="11"
                     android:maxLines="1"
-                    android:inputType="number"
                     android:singleLine="true"
                     android:textColor="#ff111111"
                     android:textColorHint="#ffaaaaaa"
-                    android:textSize="@dimen/text_size_14"
-                    android:id="@+id/phone"/>
+                    android:textSize="@dimen/text_size_14"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/login_lock"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/login_lock"/>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/code_inputlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/code_inputlayout"
                 app:errorEnabled="true">
 
                 <EditText
+                    android:id="@+id/code"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/code"
-                    android:maxLines="1"
                     android:inputType="number"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="#ff111111"
                     android:textColorHint="#ffaaaaaa"
-                    android:textSize="@dimen/text_size_14"
-                    android:id="@+id/code"/>
+                    android:textSize="@dimen/text_size_14"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -107,12 +108,12 @@
 
 
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:text="Login"
-        android:id="@+id/btn_login"/>
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
+        android:text="Login"/>
 
 </LinearLayout>

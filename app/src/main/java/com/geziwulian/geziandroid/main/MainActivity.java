@@ -1,11 +1,15 @@
 package com.geziwulian.geziandroid.main;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
@@ -35,6 +39,9 @@ public class MainActivity extends BaseActivity {
     TextView mMineText;
     @BindView(R.id.main_viewpager)
     ViewPager mPager;
+
+    // 用来计算返回键的点击间隔时间
+    private long exitTime = 0;
 
     @OnClick(R.id.home_linear)
     void clickhome() {
@@ -139,13 +146,13 @@ public class MainActivity extends BaseActivity {
         clean();
         switch (index) {
             case 0:
-                mHomeText.setTextSize(16);
+                mHomeText.setTextSize(12);
                 break;
             case 1:
-                mOrderText.setTextSize(16);
+                mOrderText.setTextSize(12);
                 break;
             case 2:
-                mMineText.setTextSize(16);
+                mMineText.setTextSize(12);
                 break;
         }
     }
@@ -154,6 +161,23 @@ public class MainActivity extends BaseActivity {
         mOrderText.setTextSize(10);
         mMineText.setTextSize(10);
         mHomeText.setTextSize(10);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                //弹出提示，可以有多种方式
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -167,5 +191,6 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
     }
+
 
 }

@@ -12,6 +12,7 @@ import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.activity.LoginActivity;
 import com.geziwulian.geziandroid.activity.LoginDemoActivity;
+import com.geziwulian.geziandroid.activity.MineOrderActivity;
 import com.geziwulian.geziandroid.activity.SettingActivity;
 import com.geziwulian.geziandroid.ui.PullToZoomScrollView;
 import com.geziwulian.geziandroid.utils.CircleTransform;
@@ -46,9 +47,9 @@ public class MineFragment extends BaseFragment {
     }
 
     private void initView() {
-        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.member_head_view, null, false);
-        View zoomView = LayoutInflater.from(getActivity()).inflate(R.layout.member_zoom_view, null, false);
-        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.member_content_view, null, false);
+        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.member_head_view, null);
+        View zoomView = LayoutInflater.from(getActivity()).inflate(R.layout.member_zoom_view, null);
+        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.member_content_view, null);
         scrollView.setHeaderView(headView);
         scrollView.setZoomView(zoomView);
         scrollView.setScrollContentView(contentView);
@@ -67,7 +68,7 @@ public class MineFragment extends BaseFragment {
         headView.findViewById(R.id.tv_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(LoginDemoActivity.class);
+                startActivity(LoginActivity.class);
             }
         });
 
@@ -77,7 +78,7 @@ public class MineFragment extends BaseFragment {
         scrollView.getPullRootView().findViewById(R.id.orderRecord).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "订单记录", Toast.LENGTH_SHORT).show();
+                startActivity(MineOrderActivity.class);
             }
         });
 

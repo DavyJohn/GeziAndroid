@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_view"
-    android:layout_width="match_parent"
-    android:layout_height="180dp">
+                android:id="@+id/layout_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_user_head"
@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"/>
 
     <TextView
         android:id="@+id/tv_user_name"
@@ -20,40 +20,50 @@
         android:layout_marginTop="6dp"
         android:text="13521468432"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
     <LinearLayout
         android:id="@+id/ll_action_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:background="@color/transparent_half"
         android:divider="@drawable/ic_img_line_v"
         android:dividerPadding="16dp"
+        android:orientation="horizontal"
         android:showDividers="middle">
 
-        <TextView
+        <LinearLayout
             android:id="@+id/tv_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:padding="13dp"
-            android:text="注册"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:orientation="vertical">
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/tv_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:padding="13dp"
-            android:text="登录"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"/>
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>
