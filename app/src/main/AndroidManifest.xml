@@ -69,6 +69,18 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.MineOrderActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PlaceAnOrderActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <!--Umeng-->
+        <meta-data android:value="57a93bad67e58ee045002499" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
+        <!--Bugly-->
+        <!-- 配置APP ID -->
+        <meta-data
+            android:name="BUGLY_APPID"
+            android:value="aeaeb86071" />
     </application>
 
 </manifest>

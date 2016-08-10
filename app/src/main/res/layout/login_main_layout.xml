@@ -105,7 +105,7 @@
 
                 <Button
                     android:id="@+id/btnGetCode"
-                    android:layout_width="100.0dip"
+                    android:layout_width="110.0dip"
                     android:layout_height="33.0dip"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"

@@ -6,6 +6,7 @@ import android.content.Context;
 
 
 import com.geziwulian.netlibrary.HttpClient;
+import com.tencent.bugly.crashreport.CrashReport;
 
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public final class BaseApplication extends Application {
         appContext = this;
         JPushInterface.setDebugMode(true);
         JPushInterface.init(appContext);
-//        CrashReport.initCrashReport(appContext, "900021610", true);
+        CrashReport.initCrashReport(getAppContext());
         HttpClient.init(appContext);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(this)
                 .name("default.realm")
