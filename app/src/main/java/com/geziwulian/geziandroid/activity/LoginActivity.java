@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -19,17 +20,25 @@ import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.sms.ReadSmsContent;
 import com.geziwulian.geziandroid.utils.CircleTransform;
+import com.geziwulian.geziandroid.utils.Constant;
 import com.geziwulian.netlibrary.ApiWrapper;
+import com.geziwulian.netlibrary.model.login.Token;
 import com.geziwulian.netlibrary.utils.DeviceUtil;
 import com.geziwulian.netlibrary.utils.StringUtil;
+import com.geziwulian.netlibrary.utils.TokenUntil;
 import com.squareup.picasso.Picasso;
 import com.ta.utdid2.android.utils.StringUtils;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import rx.Subscription;
 import rx.functions.Action1;
 
@@ -40,6 +49,7 @@ import rx.functions.Action1;
 public class LoginActivity extends BaseActivity {
 
 
+    private static final String TAG = getTagName(LoginActivity.class);
     private ReadSmsContent readSmsContent;
     @BindView(R.id.app_log)
     ImageView mImageAppLogo;
@@ -68,12 +78,14 @@ public class LoginActivity extends BaseActivity {
         getCode();
     }
 
+    private static final int MSG_SET_ALIAS = 1001;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main_layout);
         initView();
-
     }
 
     private void initView(){
@@ -81,7 +93,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void isLogin() {
-        if (isMobileNO(mPhone.getText().toString())) {
+        if (isMobileNO(mPhone.getText().toString())&&mPhoneCode.length() == 6) {
             showLog("login");
             getToken();
         } else {
@@ -113,16 +125,19 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        JPushInterface.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        JPushInterface.onPause(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ButterKnife.bind(this).unbind();
     }
 
     @Override
@@ -139,9 +154,25 @@ public class LoginActivity extends BaseActivity {
         return m.matches();
 
     }
-
+    /**
+     * 获取TOKEN
+     * */
     public void getToken() {
-        ApiWrapper  w = new ApiWrapper();
+        ApiWrapper  wrapper = new ApiWrapper();
+        Subscription subscription = wrapper.login(mPhone.getText().toString().trim(),mPhoneCode.getText().toString().trim())
+                .subscribe(newSubscriber(new Action1<Token>() {
+                    @Override
+                    public void call(Token token) {
+                        TokenUntil.saveToken(token.token);
+                        Set<String> set = new HashSet<String>();
+                        set.add(Constant.Jpush_Tag_1);
+                        set.add(Constant.Jpush_Tag_2);
+                        set.add(Constant.Jpush_Tag_3);
+                        mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS,set));
+                    }
+                }));
+        mCompositeSubscription.add(subscription);
+
     }
     /**
      * 获取验证码
@@ -154,11 +185,43 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(newSubscriber(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
                         readSmsContent = new ReadSmsContent(new Handler(), mContext, mPhoneCode);
                         mContext.getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, readSmsContent);
                     }
                 }));
         mCompositeSubscription.add(s);
     }
+
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            switch (code) {
+                case 0:
+                    showLog(code+"");
+                    finish();
+                    break;
+                case 6002:
+                    showLog("6002");
+                    break;
+                default:
+                    showLog(code+"");
+                    break;
+            }
+        }
+    };
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case MSG_SET_ALIAS:
+                    Log.e(TAG,"MSG_SET_ALIAS");
+                    JPushInterface.setAliasAndTags(LoginActivity.this,
+                            mPhone.getText().toString().trim(),
+                            (Set<String>) msg.obj,
+                            mAliasCallback);
+                    break;
+            }
+        }
+    };
 }

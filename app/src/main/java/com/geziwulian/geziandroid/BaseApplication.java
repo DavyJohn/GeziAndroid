@@ -42,7 +42,7 @@ public final class BaseApplication extends Application {
         super.onCreate();
         appContext = this;
         JPushInterface.setDebugMode(true);
-        JPushInterface.init(appContext);
+        JPushInterface.init(this);
         CrashReport.initCrashReport(getAppContext());
         HttpClient.init(appContext);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(this)

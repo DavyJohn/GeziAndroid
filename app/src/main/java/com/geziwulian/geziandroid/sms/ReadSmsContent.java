@@ -2,7 +2,6 @@ package com.geziwulian.geziandroid.sms;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.database.ContentObservable;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
