@@ -1,20 +1,17 @@
 package com.geziwulian.geziandroid.activity;
 
-import android.graphics.Color;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.ContextCompat;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
+
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
@@ -27,7 +24,6 @@ import com.geziwulian.netlibrary.utils.DeviceUtil;
 import com.geziwulian.netlibrary.utils.StringUtil;
 import com.geziwulian.netlibrary.utils.TokenUntil;
 import com.squareup.picasso.Picasso;
-import com.ta.utdid2.android.utils.StringUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -44,6 +40,7 @@ import rx.functions.Action1;
 
 /**
  * Created by 志浩 on 2016/8/2.
+ * 登陆界面
  */
 
 public class LoginActivity extends BaseActivity {
@@ -62,6 +59,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.btnGetCode)
     Button mBtnCode;
 
+    private AppCompatActivity activity;
     @OnClick(R.id.btnSure)
     void login() {
         isLogin();
@@ -74,18 +72,18 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btnGetCode)
     void code() {
-        timer.start();
-        getCode();
+        mTimeThread.run();
     }
 
     private static final int MSG_SET_ALIAS = 1001;
-
+    private static final int MESSAGE_TIMER = 1002 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main_layout);
         initView();
+        activity = this;
     }
 
     private void initView(){
@@ -94,10 +92,9 @@ public class LoginActivity extends BaseActivity {
 
     private void isLogin() {
         if (isMobileNO(mPhone.getText().toString())&&mPhoneCode.length() == 6) {
-            showLog("login");
             getToken();
         } else {
-            showLog("phone 错误");
+
         }
     }
 
@@ -106,14 +103,23 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onTick(long millisUntilFinished) {
             // TODO Auto-generated method stub
-            mBtnCode.setClickable(false);
-            mBtnCode.setText("(" + millisUntilFinished / 1000 + ")" + "秒后重新发送");
+            if (!activity.isFinishing()){
+                mBtnCode.setClickable(false);
+                mBtnCode.setText("(" + millisUntilFinished / 1000 + ")" + "秒后重新发送");
+                Log.e(TAG,"(" + millisUntilFinished / 1000 + ")" + "秒后重新发送");
+            }else {
+                timer.cancel();
+            }
+
         }
 
         @Override
         public void onFinish() {
-            mBtnCode.setText("获取验证码");
-            mBtnCode.setClickable(true);// 重新获得点击
+            if (!activity.isFinishing()){
+                mBtnCode.setText(R.string.get_code_number);
+                mBtnCode.setClickable(true);// 重新获得点击
+                mBtnCode.setEnabled(true);
+            }
         }
     };
 
@@ -137,7 +143,11 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (readSmsContent != null){
+            this.getContentResolver().unregisterContentObserver(readSmsContent);
+        }
         ButterKnife.bind(this).unbind();
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     @Override
@@ -215,13 +225,31 @@ public class LoginActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case MSG_SET_ALIAS:
-                    Log.e(TAG,"MSG_SET_ALIAS");
                     JPushInterface.setAliasAndTags(LoginActivity.this,
                             mPhone.getText().toString().trim(),
                             (Set<String>) msg.obj,
                             mAliasCallback);
                     break;
+                case MESSAGE_TIMER:
+                    if (isMobileNO(mPhone.getText().toString().trim())){
+                        timer.start();
+                        getCode();
+                    }else {
+                        showToast(getString(R.string.is_phonen_umber));
+                    }
+                    break;
             }
         }
     };
+
+    Thread mTimeThread = new Thread(){
+        @Override
+        public void run() {
+          Message message = new Message();
+            message.what = MESSAGE_TIMER;
+            mHandler.sendMessage(message);
+
+        }
+    };
+
 }

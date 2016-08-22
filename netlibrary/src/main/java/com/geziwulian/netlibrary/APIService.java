@@ -93,10 +93,10 @@ public interface APIService {
      */
     @POST("auth/refresh")
     Observable<Response<String>> reLogin();
-
-
+    //Header
     @POST("auth/refresh")
     Call<String> reFreshToken(@Header("Authorization") String authorization);
+
 
     //我
     @GET("auth/me")

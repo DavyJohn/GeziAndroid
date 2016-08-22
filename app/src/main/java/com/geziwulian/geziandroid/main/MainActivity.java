@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case 2:
                 TextView mToolTitleMine = (TextView) mToolbar.findViewById(R.id.tooltitle);
-                mToolTitleMine.setText(R.string.mine);
+                mToolTitleMine.setText(R.string.persional_center);
                 mToolbar.setTitle("");
                 setSupportActionBar(mToolbar);
                 break;

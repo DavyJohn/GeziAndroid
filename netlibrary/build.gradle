@@ -31,4 +31,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit-converters:2.0.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.0-RC1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'//3.4.1
+    //cookie
+    compile 'com.github.franmontiel:PersistentCookieJar:v0.9.3'
 }

@@ -162,6 +162,9 @@
             android:name="JPUSH_APPKEY"
             android:value="fc558fad47d4d984be7fc033"/>
 
+        <activity android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

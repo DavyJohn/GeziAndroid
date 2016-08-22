@@ -7,6 +7,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.geziwulian.netlibrary.utils.ConstantUtil;
 import com.geziwulian.netlibrary.utils.ExceptionUtil;
 import com.geziwulian.netlibrary.utils.TokenUntil;
@@ -21,7 +25,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Route;
-import okhttp3.logging.HttpLoggingInterceptor;
+
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -77,8 +81,10 @@ public class HttpClient {
 
     private static Retrofit getRetrofit(){
         if (retrofit == null){
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            FileHttpLoggingInterceptor interceptor = new FileHttpLoggingInterceptor();
+            interceptor.setLevel(FileHttpLoggingInterceptor.Level.BODY);
+
+
 
             Interceptor mTokenInterceptor = new Interceptor() {
                 @Override public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -128,12 +134,14 @@ public class HttpClient {
                     }
                 }
             };
-            /**
-             * 设置缓存
-             * */
+
+
+            ClearableCookieJar cookieJar =
+                    new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
             File cacheFile = new File(context.getCacheDir(),"httpcache");
             Cache cache = new Cache(cacheFile,1024*1024*10);//10M缓存
             OkHttpClient client = new OkHttpClient.Builder()
+                    .cookieJar(cookieJar)
                     .addInterceptor(interceptor)
                     .addNetworkInterceptor(mTokenInterceptor)
                     .addInterceptor(mTokenInterceptor)
@@ -160,7 +168,7 @@ public class HttpClient {
             FileHttpLoggingInterceptor interceptor = new FileHttpLoggingInterceptor(new FileHttpLoggingInterceptor.Logger(){
                 @Override
                 public void log(String message) {
-                    Log.i("BangAndroidRxJava:", message);
+                    Log.i("AndroidRxJava:", message);
                 }
             });
             OkHttpClient client = new OkHttpClient.Builder()

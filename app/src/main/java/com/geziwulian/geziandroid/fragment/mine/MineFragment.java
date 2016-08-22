@@ -1,5 +1,6 @@
 package com.geziwulian.geziandroid.fragment.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -85,7 +86,9 @@ public class MineFragment extends BaseFragment {
         scrollView.getPullRootView().findViewById(R.id.textSetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(SettingActivity.class);
+//                startActivity(SettingActivity.class);
+                Intent intent = new Intent(getActivity(),SettingActivity.class);
+                startActivity(intent);
 
             }
         });
