@@ -16,6 +16,7 @@ import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.fragment.mine.MineOrderPageLeftFragment;
 import com.geziwulian.geziandroid.fragment.mine.MineOrderPageRightFragment;
 import com.geziwulian.geziandroid.ui.swipebacklayout.SwipeBackActivity;
+import com.geziwulian.geziandroid.utils.AppManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class MineOrderActivity extends SwipeBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mine_order_layout);
+        AppManager.getAppManager().addActivity(mContext);
         initView();
         setupToolbar();
         mTabLayout.setTabData(title);

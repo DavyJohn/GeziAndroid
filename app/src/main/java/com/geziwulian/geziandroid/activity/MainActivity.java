@@ -1,8 +1,6 @@
-package com.geziwulian.geziandroid.main;
+package com.geziwulian.geziandroid.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,6 +14,7 @@ import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.fragment.home.HomeFragment;
 import com.geziwulian.geziandroid.fragment.mine.MineFragment;
 import com.geziwulian.geziandroid.fragment.order.OrderFragment;
+import com.geziwulian.geziandroid.utils.AppManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +72,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppManager.getAppManager().addActivity(mContext);
         initFragment();
         setUpToolbar(0);
 
@@ -172,7 +172,7 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-                finish();
+                AppManager.getAppManager().AppExit(mContext);
             }
             return true;
         }

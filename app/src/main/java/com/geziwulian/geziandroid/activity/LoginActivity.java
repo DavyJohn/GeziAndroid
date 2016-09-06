@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.sms.ReadSmsContent;
+import com.geziwulian.geziandroid.utils.AppManager;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.geziwulian.geziandroid.utils.Constant;
 import com.geziwulian.netlibrary.ApiWrapper;
@@ -82,6 +83,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main_layout);
+        AppManager.getAppManager().addActivity(mContext);
         initView();
         activity = this;
     }

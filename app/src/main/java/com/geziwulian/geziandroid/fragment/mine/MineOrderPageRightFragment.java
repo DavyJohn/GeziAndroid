@@ -33,4 +33,8 @@ public class MineOrderPageRightFragment extends BaseFragment {
         mTitle.setText("right");
     }
 
+    @Override
+    protected void lazyLoad() {
+
+    }
 }

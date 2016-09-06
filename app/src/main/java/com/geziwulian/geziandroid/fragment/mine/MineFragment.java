@@ -3,6 +3,7 @@ package com.geziwulian.geziandroid.fragment.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.activity.ChangeHeadActivity;
 import com.geziwulian.geziandroid.activity.LoginActivity;
 import com.geziwulian.geziandroid.activity.LoginDemoActivity;
 import com.geziwulian.geziandroid.activity.MineOrderActivity;
@@ -45,6 +47,7 @@ public class MineFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         unbinder = ButterKnife.bind(this, view);
         initView();
+        Log.e("MineFragment启动====","");
     }
 
     private void initView() {
@@ -57,12 +60,21 @@ public class MineFragment extends BaseFragment {
         headerBg = (ImageView) zoomView.findViewById(R.id.iv_zoom);
         headerBg.setImageResource(R.mipmap.ic_img_profile_bg);//给图片设置src
 
+        //测试
+        headerBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"g个那个改头像",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), ChangeHeadActivity.class));
+            }
+        });
         ImageView headImage = (ImageView) headView.findViewById(R.id.iv_user_head);
         Picasso.with(getActivity()).load(R.mipmap.ic_launcher).transform(new CircleTransform()).into(headImage);
         headView.findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Click", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -93,6 +105,10 @@ public class MineFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    protected void lazyLoad() {
 
     }
 

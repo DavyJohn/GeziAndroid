@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.geziwulian.geziandroid.main.MainActivity;
 import com.geziwulian.netlibrary.model.ActionData;
 import com.google.gson.Gson;
 

@@ -235,4 +235,11 @@ public class ApiWrapper extends HttpClient {
     public Observable<String []> deleteAllshopIds(String [] id){
         return getService().deleteAllshops(id).compose(this.<String []>applySchedulers());
     }
+
+    /**
+     * 修改头像*/
+    public  Observable<Avatar> Avatar( RequestBody image){
+        return  getFileService().Avatar( image)
+                .compose(this.<Avatar>applySchedulers());
+    }
 }

@@ -9,9 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
@@ -34,6 +36,7 @@ import rx.functions.Action1;
  */
 public class HomeFragment extends BaseFragment {
 
+    private boolean isPrepared;//初始化标志位
     @BindView(R.id.home_recycler)
     RecyclerView mRecycler;
     @BindView(R.id.home_swipe)
@@ -74,7 +77,10 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        bannerThread.run();
+//        bannerThread.run();
+        Log.e("HomeFragment执行","onViewCreated");
+        isPrepared = true;
+        lazyLoad();
     }
 
     private void initView() {
@@ -139,6 +145,17 @@ public class HomeFragment extends BaseFragment {
                     }
                 }));
         mCompositeSubscription.add(subscription);
+    }
+
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared ||!isVisible){
+            Log.e("HomeFraghment执行lazyload","不执行");
+        }else {
+            Log.e("HomeFraghment执行lazyload","执行");
+            mSwipe.setRefreshing(true);
+            initBanner();
+        }
     }
 
     @Override

@@ -165,7 +165,7 @@
         <activity android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -184,7 +184,10 @@
         <activity
             android:name=".activity.PlaceAnOrderActivity"
             android:screenOrientation="portrait"/>
-
+        //测试头像
+        <activity android:name=".activity.ChangeHeadActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <!--Umeng-->
         <meta-data

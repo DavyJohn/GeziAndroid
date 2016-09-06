@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.ui.swipebacklayout.SwipeBackActivity;
+import com.geziwulian.geziandroid.utils.AppManager;
 import com.geziwulian.geziandroid.utils.DataCleanManager;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class SettingActivity extends SwipeBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_main_layout);
+        AppManager.getAppManager().addActivity(mContext);
         setupToolabr();
         initView();
     }
