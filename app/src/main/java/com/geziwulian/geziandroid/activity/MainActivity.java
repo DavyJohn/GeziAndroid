@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,12 @@ public class MainActivity extends BaseActivity {
 
     private static final String TAG = getTagName(MainActivity.class);
 
+    @BindView(R.id.activity_main_info)
+    ImageView mImageInfo;
+    @BindView(R.id.activity_main_search_order)
+    ImageView mImageSearchOrder;
+    @BindView(R.id.activity_main_jijian)
+    ImageView mImageSend;
     @BindView(R.id.main_toolbar)
     Toolbar mToolbar;
     @BindView(R.id.home_text)
@@ -75,7 +82,7 @@ public class MainActivity extends BaseActivity {
         AppManager.getAppManager().addActivity(mContext);
         initFragment();
         setUpToolbar(0);
-
+        setTab(0);
     }
 
     private void setUpToolbar(int index){
@@ -147,17 +154,23 @@ public class MainActivity extends BaseActivity {
         switch (index) {
             case 0:
                 mHomeText.setTextSize(12);
+                mImageSend.setImageResource(R.mipmap.jijian_check_btn);
                 break;
             case 1:
                 mOrderText.setTextSize(12);
+                mImageSearchOrder.setImageResource(R.mipmap.search_check_btn);
                 break;
             case 2:
                 mMineText.setTextSize(12);
+                mImageInfo.setImageResource(R.mipmap.wo_check_btn);
                 break;
         }
     }
 
     private void clean() {
+        mImageSend.setImageResource(R.mipmap.jijian_uncheck_btn);
+        mImageSearchOrder.setImageResource(R.mipmap.search_uncheck_btn);
+        mImageInfo.setImageResource(R.mipmap.wo_uncheck_btn);
         mOrderText.setTextSize(10);
         mMineText.setTextSize(10);
         mHomeText.setTextSize(10);
@@ -183,7 +196,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        setTab(0);
     }
 
     @Override

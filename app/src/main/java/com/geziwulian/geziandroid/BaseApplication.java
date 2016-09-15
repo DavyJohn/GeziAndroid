@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-
 import com.geziwulian.netlibrary.HttpClient;
 import com.tencent.bugly.crashreport.CrashReport;
-
 
 import java.util.ArrayList;
 
@@ -43,6 +41,7 @@ public final class BaseApplication extends Application {
         appContext = this;
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+//        LocationUtils.initLocation(appContext);
         CrashReport.initCrashReport(getAppContext());
         HttpClient.init(appContext);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(this)

@@ -1,44 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:background="@color/background_color">
-
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/background_color"
+              android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/set_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/maincolor">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_gravity="center"
             android:text="设置"
             android:textColor="@color/text_color_white"
-            android:layout_gravity="center"/>
+            android:textSize="16sp"/>
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
+        android:id="@+id/setting_main_model"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:id="@+id/clear_rom">
+        android:background="@color/white"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:layout_weight="7"
+            android:text=" 省流量模式"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_14"/>
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_16"
-            android:text="清除缓存"
-            android:layout_marginLeft="40dp"
-            android:textColor="@color/black"/>
+            android:layout_marginRight="16dp"
+            android:id="@+id/setting_switch_btn"
+            app:kswThumbColor="@color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setting_mian_version"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="3"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="7"
+            android:text="当前版本"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_14"/>
+
+        <TextView
+            android:id="@+id/setting_mian_version_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:drawableRight="@drawable/right"
             android:gravity="center"
-            android:id="@+id/rom_size"/>
+            android:layout_marginRight="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setting_main_about"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="7"
+            android:text="关于我们"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_14"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clear_rom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="7"
+            android:text="清除缓存"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_size_14"/>
+
+        <TextView
+            android:id="@+id/rom_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:drawableRight="@drawable/right"
+            android:gravity="center"
+            android:layout_marginRight="16dp"/>
     </LinearLayout>
 
 </LinearLayout>

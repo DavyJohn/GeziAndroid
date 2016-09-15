@@ -34,9 +34,9 @@ import butterknife.Unbinder;
 public class OrderFragment extends BaseFragment {
 
     private boolean isPrepared;//初始化标志位
-    @BindView(R.id.home_recycler)
+    @BindView(R.id.order_fragment_recycler)
     RecyclerView mRecycler;
-    @BindView(R.id.home_swipe)
+    @BindView(R.id.order_fragment_swipe)
     SwipeRefreshLayout mSwipe;
 
     private OrderAdapter adapter;
@@ -47,7 +47,7 @@ public class OrderFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_fragment_layout,container,false);
+        return inflater.inflate(R.layout.order_fragment_layout,container,false);
     }
 
     @Override

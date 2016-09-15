@@ -17,6 +17,8 @@ import com.geziwulian.geziandroid.activity.LoginActivity;
 import com.geziwulian.geziandroid.activity.LoginDemoActivity;
 import com.geziwulian.geziandroid.activity.MineOrderActivity;
 import com.geziwulian.geziandroid.activity.SettingActivity;
+import com.geziwulian.geziandroid.fragment.mine.activity.MineAddressMengerActivity;
+import com.geziwulian.geziandroid.fragment.mine.activity.MineExpressActivity;
 import com.geziwulian.geziandroid.ui.PullToZoomScrollView;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
@@ -47,7 +49,6 @@ public class MineFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        Log.e("MineFragment启动====","");
     }
 
     private void initView() {
@@ -58,7 +59,7 @@ public class MineFragment extends BaseFragment {
         scrollView.setZoomView(zoomView);
         scrollView.setScrollContentView(contentView);
         headerBg = (ImageView) zoomView.findViewById(R.id.iv_zoom);
-        headerBg.setImageResource(R.mipmap.ic_img_profile_bg);//给图片设置src
+        headerBg.setImageResource(R.drawable.backimage);//给图片设置src
 
         //测试
         headerBg.setOnClickListener(new View.OnClickListener() {
@@ -88,19 +89,39 @@ public class MineFragment extends BaseFragment {
         /**
          *  scrollView.getPullRootView() 获取contentView 控件
          * */
-        scrollView.getPullRootView().findViewById(R.id.orderRecord).setOnClickListener(new View.OnClickListener() {
+        scrollView.getPullRootView().findViewById(R.id.member_content_address_menger).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(MineOrderActivity.class);
+                startActivity(MineAddressMengerActivity.class);
             }
         });
 
-        scrollView.getPullRootView().findViewById(R.id.textSetting).setOnClickListener(new View.OnClickListener() {
+        scrollView.getPullRootView().findViewById(R.id.member_content_express).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO 我的快递
+                startActivity(MineExpressActivity.class);
+            }
+        });
+
+        scrollView.getPullRootView().findViewById(R.id.member_content_integral_mall).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO 积分商城
+            }
+        });
+
+        scrollView.getPullRootView().findViewById(R.id.member_content_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO 分享有礼
+            }
+        });
+
+        scrollView.getPullRootView().findViewById(R.id.member_content_set).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(SettingActivity.class);
-                Intent intent = new Intent(getActivity(),SettingActivity.class);
-                startActivity(intent);
+                startActivity(SettingActivity.class);
 
             }
         });

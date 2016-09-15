@@ -18,7 +18,7 @@
         android:layout_below="@id/iv_user_head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
-        android:text="13521468432"
+        android:text="@string/Click_login"
         android:textColor="@color/white"
         android:textSize="16sp"/>
 
@@ -38,13 +38,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="注册"
+                android:text="我的优惠卷"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_12"/>
         </LinearLayout>
@@ -54,13 +60,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="登录"
+                android:text="我的积分"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_12"/>
         </LinearLayout>

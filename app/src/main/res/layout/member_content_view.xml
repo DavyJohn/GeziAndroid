@@ -6,31 +6,76 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/orderRecord"
+        android:id="@+id/member_content_address_menger"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/list_item_selector"
-        android:drawableLeft="@mipmap/ic_setting_record"
+        android:drawableLeft="@mipmap/address_management_icon"
+        android:drawablePadding="10dp"
+        android:drawableRight="@mipmap/ic_setting_arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="14dp"
+        android:text="地址管理"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_16" />
+
+    <TextView
+        android:id="@+id/member_content_express"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@drawable/list_item_selector"
+        android:drawableLeft="@mipmap/courier_icon"
         android:drawablePadding="10dp"
         android:drawableRight="@mipmap/ic_setting_arrow"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="订单记录"
+        android:text="我的快递"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/list_view_divider" />
     <TextView
-        android:id="@+id/textSetting"
+        android:id="@+id/member_content_integral_mall"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="0.5dp"
         android:background="@drawable/list_item_selector"
-        android:drawableLeft="@mipmap/ic_setting_setting"
+        android:drawableLeft="@mipmap/integral_icon"
+        android:drawablePadding="10dp"
+        android:drawableRight="@mipmap/ic_setting_arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="14dp"
+        android:text="积分商城"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_16" />
+
+    <TextView
+        android:id="@+id/member_content_share"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@drawable/list_item_selector"
+        android:drawableLeft="@mipmap/share_icon"
+        android:drawablePadding="10dp"
+        android:drawableRight="@mipmap/ic_setting_arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="14dp"
+        android:text="分享有礼"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_16" />
+
+    <TextView
+        android:id="@+id/member_content_set"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/list_item_selector"
+        android:drawableLeft="@mipmap/set_icon"
         android:drawablePadding="10dp"
         android:drawableRight="@mipmap/ic_setting_arrow"
         android:gravity="center_vertical"
@@ -40,10 +85,5 @@
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/list_view_divider" />
+
 </LinearLayout>

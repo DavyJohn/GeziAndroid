@@ -19,7 +19,6 @@ public class Constant {
      * 图片下载网址头*/
     public static final String Image_Api_URL = "https://v1.ibangi.cn/img/upload/";
 
-    public static int IS_CANLOOP = 0; //0：不滚动
 
 
     public static final String Jpush_Tag_1 = "android";

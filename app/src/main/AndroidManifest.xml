@@ -6,6 +6,8 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="23"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <!--for phone-->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -38,7 +40,6 @@
     <permission
         android:name="${applicationId}.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature"/>
-
     <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -54,8 +55,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-
-
     <application
         android:name="BaseApplication"
         android:allowBackup="true"
@@ -77,7 +76,6 @@
                 <category android:name="${applicationId}"/>
             </intent-filter>
         </activity>
-
 
         <service
             android:name="cn.jpush.android.service.DaemonService"
@@ -165,11 +163,17 @@
         <activity android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
+        </activity>
+        <activity android:name=".MapViewActivity"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -187,8 +191,11 @@
         //测试头像
         <activity android:name=".activity.ChangeHeadActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".fragment.mine.activity.MineAddressMengerActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-
+        <activity android:name=".fragment.mine.activity.MineExpressActivity"
+            android:screenOrientation="portrait"/>
         <!--Umeng-->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -201,6 +208,11 @@
         <meta-data
             android:name="BUGLY_APPID"
             android:value="aeaeb86071"/>
+        <!--高德-->
+        <service android:name="com.amap.api.location.APSService"></service>
+        <meta-data android:name="com.amap.api.v2.apikey"
+                   android:value="09721c97b1d7635a0baa1652b5527784"/>
+
     </application>
 
 </manifest>

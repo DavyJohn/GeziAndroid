@@ -1,8 +1,11 @@
 package com.geziwulian.geziandroid.activity;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,6 +13,7 @@ import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.ui.swipebacklayout.SwipeBackActivity;
 import com.geziwulian.geziandroid.utils.AppManager;
 import com.geziwulian.geziandroid.utils.DataCleanManager;
+import com.kyleduo.switchbutton.SwitchButton;
 
 import java.io.File;
 
@@ -27,7 +31,8 @@ public class SettingActivity extends SwipeBackActivity {
     Toolbar mToolbar;
     @BindView(R.id.rom_size)
     TextView mSizeText;
-
+    @BindView(R.id.setting_switch_btn)
+    SwitchButton mSwitchBtn;
     @OnClick(R.id.clear_rom)
     void clear() {
         DataCleanManager.cleanCache(this);
@@ -58,6 +63,17 @@ public class SettingActivity extends SwipeBackActivity {
     }
 
     private void initView() {
+        mSwitchBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b == true){
+                    mSwitchBtn.setBackColor(ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.switch_color)));
+                }else {
+                    mSwitchBtn.setBackColor(ColorStateList.valueOf(ContextCompat.getColor(mContext, R.color.gray_light)));
+                }
+            }
+        });
+
         File cacheFile = new File(this.getCacheDir(), "httpcache");
         try {
             mSizeText.setText(DataCleanManager.getCacheSize(cacheFile));
