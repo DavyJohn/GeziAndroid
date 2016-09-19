@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="98dp"
+    android:background="@color/background_color"
+    android:layout_marginTop="8dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/conpon">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/maincolor"
+                android:text="抵用卷￥10"
+                android:layout_marginLeft="16dp"
+                android:textSize="25sp"
+                android:layout_marginTop="12dp"
+                android:id="@+id/mine_invalid_vouchers"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/maincolor"
+                android:text="有效期32016-08-17"
+                android:textSize="15sp"
+                android:layout_marginBottom="12dp"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/mine_invalid_time"
+                android:layout_alignLeft="@+id/mine_invalid_vouchers"
+                android:layout_alignStart="@+id/mine_invalid_vouchers"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已过期"
+                android:textColor="@color/maincolor"
+                android:textSize="34sp"
+                android:id="@+id/mine_invalid_state"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+
+
+</FrameLayout>

@@ -185,16 +185,36 @@
         <activity
             android:name=".activity.MineOrderActivity"
             android:screenOrientation="portrait"/>
+        //
         <activity
             android:name=".activity.PlaceAnOrderActivity"
             android:screenOrientation="portrait"/>
         //测试头像
         <activity android:name=".activity.ChangeHeadActivity"
             android:screenOrientation="portrait"/>
+        //地址管理中心
         <activity android:name=".fragment.mine.activity.MineAddressMengerActivity"
             android:screenOrientation="portrait"/>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        //我的快递
         <activity android:name=".fragment.mine.activity.MineExpressActivity"
+            android:screenOrientation="portrait"/>
+        //订单详情
+        <activity android:name=".fragment.mine.activity.MineOrderDetailsActivity"
+            android:screenOrientation="portrait"/>
+        //积分商城
+        <activity android:name=".fragment.mine.activity.MineIntegralMallActivity"
+            android:screenOrientation="portrait"/>
+        //我的积分
+        <activity android:name=".fragment.mine.activity.MineIntegralActivity"
+            android:screenOrientation="portrait"/>
+        //优惠券
+        <activity android:name=".fragment.mine.activity.MineCouponActivity"
+            android:screenOrientation="portrait"/>
+        //失效优惠券
+        <activity android:name=".fragment.mine.activity.MineInvalidActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fragment.order.activity.OrderSearchResultActivity"
             android:screenOrientation="portrait"/>
         <!--Umeng-->
         <meta-data

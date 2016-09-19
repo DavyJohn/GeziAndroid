@@ -6,6 +6,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +17,7 @@ import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.fragment.home.HomeFragment;
 import com.geziwulian.geziandroid.fragment.mine.MineFragment;
-import com.geziwulian.geziandroid.fragment.order.OrderFragment;
+import com.geziwulian.geziandroid.fragment.order.OrderSearchFragment;
 import com.geziwulian.geziandroid.utils.AppManager;
 
 import java.util.ArrayList;
@@ -48,7 +51,7 @@ public class MainActivity extends BaseActivity {
 
     // 用来计算返回键的点击间隔时间
     private long exitTime = 0;
-
+    private boolean isShowMenu = false;
     @OnClick(R.id.home_linear)
     void clickhome() {
         mPager.setCurrentItem(0);
@@ -88,29 +91,55 @@ public class MainActivity extends BaseActivity {
     private void setUpToolbar(int index){
         switch (index){
             case 0:
+                isShowMenu = true;
+                mToolbar.setVisibility(View.VISIBLE);
                 TextView mToolTitleHome = (TextView) mToolbar.findViewById(R.id.tooltitle);
                 mToolTitleHome.setText(R.string.home);
                 mToolbar.setTitle("");
                 setSupportActionBar(mToolbar);
+                mToolbar.setNavigationIcon(R.mipmap.scan_btn);
+                mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showToast("扫描");
+                    }
+                });
                 break;
             case 1:
+                isShowMenu = false;
+                mToolbar.setVisibility(View.VISIBLE);
                 TextView mToolTitleOrder = (TextView) mToolbar.findViewById(R.id.tooltitle);
                 mToolTitleOrder.setText(R.string.order);
                 mToolbar.setTitle("");
                 setSupportActionBar(mToolbar);
+                mToolbar.setNavigationIcon(null);
                 break;
             case 2:
-                TextView mToolTitleMine = (TextView) mToolbar.findViewById(R.id.tooltitle);
-                mToolTitleMine.setText(R.string.persional_center);
-                mToolbar.setTitle("");
-                setSupportActionBar(mToolbar);
+                isShowMenu = false;
+                mToolbar.setVisibility(View.GONE);
                 break;
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (isShowMenu == true){
+            getMenuInflater().inflate(R.menu.menu_info_main,menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_info_main_icon){
+            showToast("信息");
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initFragment() {
         Fragment home = new HomeFragment();
-        Fragment order = new OrderFragment();
+        Fragment order = new OrderSearchFragment();
         Fragment mine = new MineFragment();
 
         listFragment.add(home);

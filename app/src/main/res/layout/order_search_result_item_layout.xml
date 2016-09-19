@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="83dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/order_search_result_image"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="就是打算看了多久啊睡了多久啊睡了多久啊"
+        android:maxLines="2"
+        android:textSize="14sp"
+        android:id="@+id/order_search_result_text_data"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="49dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2015-03-04    12:13"
+        android:textSize="14sp"
+        android:id="@+id/order_search_result_text_time"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="49dp"/>
+</LinearLayout>

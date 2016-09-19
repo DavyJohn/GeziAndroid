@@ -18,7 +18,10 @@ import com.geziwulian.geziandroid.activity.LoginDemoActivity;
 import com.geziwulian.geziandroid.activity.MineOrderActivity;
 import com.geziwulian.geziandroid.activity.SettingActivity;
 import com.geziwulian.geziandroid.fragment.mine.activity.MineAddressMengerActivity;
+import com.geziwulian.geziandroid.fragment.mine.activity.MineCouponActivity;
 import com.geziwulian.geziandroid.fragment.mine.activity.MineExpressActivity;
+import com.geziwulian.geziandroid.fragment.mine.activity.MineIntegralActivity;
+import com.geziwulian.geziandroid.fragment.mine.activity.MineIntegralMallActivity;
 import com.geziwulian.geziandroid.ui.PullToZoomScrollView;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
@@ -74,15 +77,16 @@ public class MineFragment extends BaseFragment {
         headView.findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Click", Toast.LENGTH_SHORT).show();
-
+            //TODO 优惠券
+            startActivity(MineCouponActivity.class);
             }
         });
 
         headView.findViewById(R.id.tv_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(LoginActivity.class);
+                //TODO 积分
+            startActivity(MineIntegralActivity.class);
             }
         });
 
@@ -108,6 +112,7 @@ public class MineFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 //TODO 积分商城
+                startActivity(MineIntegralMallActivity.class);
             }
         });
 

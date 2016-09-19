@@ -8,7 +8,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.fragment.order.adapter.OrderAdapter;
 import com.geziwulian.geziandroid.utils.DividerDecoration;
-import com.geziwulian.netlibrary.model.dinner.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ import butterknife.Unbinder;
 /**
  * Created by 志浩 on 2016/8/2.
  *
- * layout 使用的homeFragment
+ * 多余Fargment
  */
 public class OrderFragment extends BaseFragment {
 
@@ -58,8 +56,6 @@ public class OrderFragment extends BaseFragment {
         initView();
         isPrepared = true;
         lazyLoad();
-
-//        initDemo();
     }
 
     private  void initDemo(){

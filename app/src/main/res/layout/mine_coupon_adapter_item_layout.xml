@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="98dp"
+    android:background="@mipmap/conpon"
+    android:layout_marginTop="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/maincolor"
+            android:textSize="25sp"
+            android:layout_marginLeft="16dp"
+            android:text="抵用卷"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="￥10"
+            android:gravity="end"
+            android:id="@+id/mine_coupon_money"
+            android:textSize="25sp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/maincolor"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="有效期至2016-08-17"
+        android:textSize="15sp"
+        android:id="@+id/mine_coupon_term_of_validity"
+        android:layout_marginTop="34dp"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/maincolor"/>
+
+</LinearLayout>

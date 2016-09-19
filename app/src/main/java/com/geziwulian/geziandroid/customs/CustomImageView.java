@@ -15,7 +15,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-import com.saint.ibangandroid.R;
+import com.geziwulian.geziandroid.R;
+
 
 /**
  * Created by zzh on 2016-7-6.
@@ -64,8 +65,8 @@ public class CustomImageView extends ImageView {
             mPressAlpha = array.getInteger(R.styleable.CustomImageView_press_alpha, mPressAlpha);
             mRadius = array.getDimensionPixelSize(R.styleable.CustomImageView_radius, mRadius);
             mShapeType = array.getInteger(R.styleable.CustomImageView_shape_type, mShapeType);
-            mBorderWidth = array.getDimensionPixelOffset(R.styleable.CustomImageView_border_width, mBorderWidth);
-            mBorderColor = array.getColor(R.styleable.CustomImageView_border_color, mBorderColor);
+            mBorderWidth = array.getDimensionPixelOffset(R.styleable.CustomImageView_border_width_, mBorderWidth);
+            mBorderColor = array.getColor(R.styleable.CustomImageView_border_color_, mBorderColor);
             array.recycle();
         }
 

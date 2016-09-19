@@ -5,10 +5,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.fragment.mine.activity.MineOrderDetailsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,9 +19,17 @@ import butterknife.ButterKnife;
 /**
  * Created by 志浩 on 2016/9/15.
  */
-public class MIneExpressFinishedFragment extends BaseFragment {
-    @BindView(R.id.mine_express_handle_text)
-    TextView mText;
+public class MIneExpressFinishedFragment extends BaseFragment implements View.OnClickListener{
+
+    @BindView(R.id.mine_express_handle_cancle_setting)
+    RelativeLayout mRelativeCancleSetting;
+    @BindView(R.id.mine_express_handle_reasult)
+    LinearLayout mLinearReasult;
+
+    @BindView(R.id.mine_express_handle_cancle)
+    TextView mTextCancle;
+    @BindView(R.id.mine_express_handle_details)
+    TextView mTextDetails;
 
     @Nullable
     @Override
@@ -30,11 +41,27 @@ public class MIneExpressFinishedFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
-        mText.setText("2");
+        mLinearReasult.setVisibility(View.GONE);
+        mRelativeCancleSetting.setVisibility(View.GONE);
+        mTextCancle.setOnClickListener(this);
+        mTextDetails.setOnClickListener(this);
     }
 
     @Override
     protected void lazyLoad() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.mine_express_handle_cancle:
+                showToast("取消");
+                break;
+            case R.id.mine_express_handle_details:
+                showToast("详情");
+                startActivity(MineOrderDetailsActivity.class);
+                break;
+        }
     }
 }
