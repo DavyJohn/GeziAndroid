@@ -214,7 +214,11 @@
         //失效优惠券
         <activity android:name=".fragment.mine.activity.MineInvalidActivity"
             android:screenOrientation="portrait"/>
+        //订单搜索结果
         <activity android:name=".fragment.order.activity.OrderSearchResultActivity"
+            android:screenOrientation="portrait"/>
+        //寄件人信息
+        <activity android:name=".fragment.home.activity.HomeSenderActivity"
             android:screenOrientation="portrait"/>
         <!--Umeng-->
         <meta-data

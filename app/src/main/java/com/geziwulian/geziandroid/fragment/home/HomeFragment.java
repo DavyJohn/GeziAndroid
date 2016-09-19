@@ -12,7 +12,9 @@ import android.widget.LinearLayout;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.fragment.home.activity.HomeSenderActivity;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeAdapter;
+import com.geziwulian.geziandroid.fragment.home.adapter.HomeSenderAdapter;
 import com.geziwulian.geziandroid.utils.DividerDecoration;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.home_fragment_recyclerview)
     RecyclerView mRecycler;
     @OnClick(R.id.home_fragment_Mailing) void clickMail(){
-        showToast("寄件人信息");
+        startActivity(HomeSenderActivity.class);
     }
 
     @OnClick(R.id.home_fragment_consignee) void clickConsignee(){

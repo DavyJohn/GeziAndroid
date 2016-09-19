@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_black"
+            android:textSize="14sp"
+            android:text="望山"
+            android:id="@+id/home_sender_address_menger_listitem_username"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_above="@+id/home_sender_address_menger_listitem_address"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/maincolor"
+            android:textSize="14sp"
+            android:text="13218677739"
+            android:id="@+id/home_sender_address_menger_listitem_phone"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_alignTop="@+id/home_sender_address_menger_listitem_username"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_black"
+            android:textSize="14sp"
+            android:text="天安门广场"
+            android:id="@+id/home_sender_address_menger_listitem_address"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/home_sender_address_menger_listitem_username"
+            android:layout_alignStart="@+id/home_sender_address_menger_listitem_username"
+            android:layout_marginBottom="12dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="1dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/edit"
+            android:text="编辑"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/home_sender_address_menger_listitem_edit"
+            android:layout_alignTop="@+id/home_sender_address_menger_listitem_delete"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/delete"
+            android:text="删除"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/home_sender_address_menger_listitem_edit"
+            android:layout_toEndOf="@+id/home_sender_address_menger_listitem_edit"
+            android:id="@+id/home_sender_address_menger_listitem_delete"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认选中"
+            android:drawableRight="@mipmap/check_box"
+            android:drawablePadding="11dp"
+            android:textSize="@dimen/text_size_12"
+            android:visibility="gone"
+            android:id="@+id/home_sender_address_menger_selected"
+            android:textColor="@color/text_color_black"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</LinearLayout>

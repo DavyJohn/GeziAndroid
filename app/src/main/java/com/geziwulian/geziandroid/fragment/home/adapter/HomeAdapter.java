@@ -44,7 +44,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public void inputPostion(int postion){
-        num = -1;//初始化
+        num = -1;
         num = postion;
         notifyDataSetChanged();
     }
