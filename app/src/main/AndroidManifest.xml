@@ -220,6 +220,18 @@
         //寄件人信息
         <activity android:name=".fragment.home.activity.HomeSenderActivity"
             android:screenOrientation="portrait"/>
+        //收件人信息
+        <activity android:name=".fragment.home.activity.HomeAddresseeActivity"
+            android:screenOrientation="portrait"/>
+        //添加新地址
+        <activity android:name=".fragment.home.activity.HomeAddAddressInfoActivity"
+            android:screenOrientation="portrait"/>
+        //确认信息
+        <activity android:name=".fragment.home.activity.HomeConfirmInfoActivtiy"
+            android:screenOrientation="portrait"/>
+        <provider
+            android:authorities="com.geziwulian.geziandroid.utils.MyContentProvider"
+            android:name=".utils.MyContentProvider"/>
         <!--Umeng-->
         <meta-data
             android:name="UMENG_APPKEY"

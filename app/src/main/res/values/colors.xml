@@ -8,7 +8,9 @@
     <color name="maincolor">#238464</color>
     <!--SwitchButton背景颜色-->
     <color name="switch_color">#44Db5e</color>
-
+    <!--有些特殊字体颜色-->
+    <color name="SomeTextColor">#54b059</color>
+    <color name="shouTextColor">#10b4d6</color>
     <color name="light_gray">#ffe4e4e4</color>
     <!-- 半透明 -->
     <color name="transparent_half">#66000000</color>

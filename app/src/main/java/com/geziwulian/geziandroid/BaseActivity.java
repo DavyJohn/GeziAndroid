@@ -297,6 +297,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mCompositeSubscription.unsubscribe();
         //结束Activity从堆栈中移除
         AppManager.getAppManager().finishActivity(this);
+        ButterKnife.bind(mContext).unbind();
     }
 
     @Override

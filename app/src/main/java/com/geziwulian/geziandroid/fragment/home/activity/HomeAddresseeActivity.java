@@ -1,36 +1,31 @@
 package com.geziwulian.geziandroid.fragment.home.activity;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.geziwulian.geziandroid.AppManager;
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.fragment.home.adapter.HomeAddresseeAdapter;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeSenderAdapter;
-import com.geziwulian.geziandroid.utils.AddressData;
 import com.geziwulian.geziandroid.utils.Constant;
-import com.geziwulian.geziandroid.utils.MyContentProvider;
 import com.geziwulian.geziandroid.utils.SimpleDividerItemDecoration;
-import com.geziwulian.geziandroid.utils.SqliteTool;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by 志浩 on 2016/9/19.
+ * Created by 志浩 on 2016/9/20.
  */
-public class HomeSenderActivity extends BaseActivity {
-
-    @BindView(R.id.home_sender_address_menger_toolbar)
+public class HomeAddresseeActivity extends BaseActivity {
+    @BindView(R.id.home_addressee_toolbar)
     Toolbar mToolbar;
     @BindView(R.id.home_sender_address_menger_swipe)
     SwipeRefreshLayout mSwipe;
@@ -39,22 +34,16 @@ public class HomeSenderActivity extends BaseActivity {
     @OnClick(R.id.home_sender_address_menger_add_new_address) void addNewAddress(){
         startActivity(HomeAddAddressInfoActivity.class);
     }
-    private List<AddressData> list = new ArrayList<>();
-    private HomeSenderAdapter adapter;
+
+    private HomeAddresseeAdapter adapter;
+    private List<String> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_sender_address_menger_layout);
-        AppManager.getAppManager().addActivity(mContext);
+        setContentView(R.layout.home_addressee_layout);
         initView();
     }
-
     private void initView(){
-        mSwipe.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_green_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        mRecycler.setHasFixedSize(true);
-        mRecycler.addItemDecoration(new SimpleDividerItemDecoration(mContext,8));
-        mRecycler.setLayoutManager(new LinearLayoutManager(mContext));
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.back_icon);
@@ -64,59 +53,48 @@ public class HomeSenderActivity extends BaseActivity {
                 finish();
             }
         });
-
-        adapter = new HomeSenderAdapter(mContext);
+        mSwipe.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        mRecycler.setHasFixedSize(true);
+        mRecycler.addItemDecoration(new SimpleDividerItemDecoration(mContext,8));
+        mRecycler.setLayoutManager(new LinearLayoutManager(mContext));
+        adapter = new HomeAddresseeAdapter (mContext);
     }
 
     private void initData(){
-        //测试数据
-        Cursor cursor = getContentResolver().query(MyContentProvider.URI,null,null,null,null);
-        list.clear();
-        while (cursor.moveToNext()){
-            AddressData data = new AddressData();
-            String data1 = cursor.getString(cursor.getColumnIndex("userName"));
-            data.setName(data1);
-            showLog(data1);
-            String data2 = cursor.getString(cursor.getColumnIndex("userPhone"));
-            showLog(data2);
-            data.setPhone(data2);
-            String data3 = cursor.getString(cursor.getColumnIndex("userAAddress"));
-            showLog(data3);
-            data.setAddress(data3);
-            list.add(data);
-        }
         if (mSwipe.isRefreshing()) mSwipe.setRefreshing(false);
         mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //TODO 属性操作
-                initData();
             }
         });
 
         mRecycler.setAdapter(adapter);
-        adapter.addData(list, Constant.HOME_SENDER_SIGN);//-1 null
-
-        adapter.setOnClickItemListener(new HomeSenderAdapter.OnClickItemListeren() {
+        list.clear();
+        for (int i =0;i<2;i++ ){
+            list.add(i+"");
+        }
+        adapter.addData(list,Constant.HOME_ADDRESSEE_SIGN );
+        adapter.setOnClickItemListener(new HomeAddresseeAdapter.OnClickItemListeren() {
             @Override
             public void onClickItem(View view, int postion) {
-                Constant.HOME_SENDER_SIGN = postion;
+                Constant.HOME_ADDRESSEE_SIGN = postion;
                 adapter.inputPostion(postion);
             }
         });
 
-        adapter.setOnClickEditListener(new HomeSenderAdapter.OnClickEditListener() {
+        adapter.setOnClickEditListener(new HomeAddresseeAdapter.OnClickEditListener() {
             @Override
             public void onClickEdit(View view, int postion) {
                 showToast("编辑");
             }
         });
 
-        adapter.setOnClickDeteleListener(new HomeSenderAdapter.OnClickDeteleListener() {
+        adapter.setOnClickDeteleListener(new HomeAddresseeAdapter.OnClickDeteleListener() {
             @Override
             public void onClickDetele(View view, int postion) {
-                SqliteTool.getInstance().deleteData(mContext,list.get(postion).getAddress());
-                initData();
+                showToast("删除");
             }
         });
     }
@@ -127,5 +105,4 @@ public class HomeSenderActivity extends BaseActivity {
         if (!mSwipe.isRefreshing()) mSwipe.setRefreshing(true);
         initData();
     }
-
 }

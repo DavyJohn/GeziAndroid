@@ -5,12 +5,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_color"
             android:orientation="vertical">
 
             <LinearLayout
@@ -340,8 +340,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="8dp"
                     android:drawableLeft="@mipmap/check_box"
-                    android:drawablePadding="8dp"
-                    android:text="我同意《鸽子物联服务条款》"/>
+                    android:drawablePadding="8dp"/>
 
                 <ImageButton
                     android:layout_width="wrap_content"

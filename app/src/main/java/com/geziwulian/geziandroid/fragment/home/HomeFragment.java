@@ -4,14 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.fragment.home.activity.HomeAddresseeActivity;
+import com.geziwulian.geziandroid.fragment.home.activity.HomeConfirmInfoActivtiy;
 import com.geziwulian.geziandroid.fragment.home.activity.HomeSenderActivity;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeAdapter;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeSenderAdapter;
@@ -35,12 +39,14 @@ public class HomeFragment extends BaseFragment {
     private HomeAdapter adapter;
     @BindView(R.id.home_fragment_recyclerview)
     RecyclerView mRecycler;
+    @BindView(R.id.home_fragment_clause_text)
+    TextView  mTextClause;
     @OnClick(R.id.home_fragment_Mailing) void clickMail(){
         startActivity(HomeSenderActivity.class);
     }
 
     @OnClick(R.id.home_fragment_consignee) void clickConsignee(){
-        showToast("收件人信息");
+        startActivity(HomeAddresseeActivity.class);
     }
     @OnClick(R.id.home_fragment_express_money) void clickExpress(){
         showToast("快递运费");
@@ -56,7 +62,7 @@ public class HomeFragment extends BaseFragment {
         showToast("物品类型");
     }
     @OnClick(R.id.home_fragment_btn_next) void clickNext(){
-        showToast("下一步");
+        startActivity(HomeConfirmInfoActivtiy.class);
     }
 
     private String [] cpName = {"顺丰速运","申通快递","中通快递","EMS","韵达快递","圆通快递","德邦快递"};
@@ -87,9 +93,14 @@ public class HomeFragment extends BaseFragment {
         mRecycler.setLayoutManager(linearLayoutManager);
         mRecycler.setHasFixedSize(true);
         adapter = new HomeAdapter(mContext);
+        String title1 = "<font color=\"#262626\">我同意</font>";
+        String title2 = "<font color=\"#00bb09\">《鸽子物联服务条款》</font>";
+        mTextClause.setText(Html.fromHtml(title1+title2));
     }
 
     private void initData(){
+        listIcon.clear();
+        listName.clear();
         for (int i=0;i<cpName.length;i++){
             listName.add(cpName[i]);
             listIcon.add(cpLogo[i]);

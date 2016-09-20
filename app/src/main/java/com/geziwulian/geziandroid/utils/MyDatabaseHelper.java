@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public MyDatabaseHelper(Context context) {
-        super(context, "CartData", null, 1);
+        super(context, "AddressData", null, 1);
     }
 
     public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
@@ -25,7 +25,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 //            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS persion("
 //                    +"name TEXT DEFAULT NONE,"+
 //                    "sex TEXT DEFAULT NONE);");
-        String sql ="Create Table If Not Exists crats(_id Integer Primary Key Autoincrement,cartName Text Default None,cartImage Text Default None,cartNumber Integer Default None,cartId Integer Default None,goodMoney Integer Default None)";
+        String sql ="Create Table If Not Exists address(_id Integer Primary Key Autoincrement,userName Text Default None,userPhone Text Default None,userAAddress Text Default None)";
         sqLiteDatabase.execSQL(sql);
     }
 

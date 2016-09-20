@@ -12,8 +12,8 @@ import android.support.annotation.Nullable;
  */
 public class MyContentProvider extends ContentProvider {
 
-    public static final Uri URI = Uri.parse("content://com.six.qiangbao.utils.MyContentProvider");
-    private static final String TABLE_NAME = "crats";
+    public static final Uri URI = Uri.parse("content://com.geziwulian.geziandroid.utils.MyContentProvider");
+    private static final String TABLE_NAME = "address";
     private SQLiteDatabase dbWrite,dbRead;
     private MyDatabaseHelper helper;
     @Override

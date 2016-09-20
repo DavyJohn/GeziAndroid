@@ -5,12 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.geziwulian.geziandroid.R;
-import com.geziwulian.geziandroid.utils.AddressData;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,26 +17,25 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by 志浩 on 2016/9/19.
+ * Created by 志浩 on 2016/9/20.
  */
-public class HomeSenderAdapter extends RecyclerView.Adapter<HomeSenderAdapter.ViewHolder> {
-    private List<AddressData> list = new ArrayList<>();
+public class HomeAddresseeAdapter extends RecyclerView.Adapter<HomeAddresseeAdapter.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
+    private List<String> list = new ArrayList<>();
     private int num =-1;
-    public HomeSenderAdapter(Context context){
-        this.context= context;
+    public HomeAddresseeAdapter(Context context){
+        this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
-    public void addData(List<AddressData> data,int postion){
+    public void addData(List<String> data,int postion){
         list.clear();
         list.addAll(data);
         num = -1;
         num = postion;
         notifyDataSetChanged();
     }
-
     public void inputPostion(int postion){
         num = -1;
         num = postion;
@@ -46,17 +43,14 @@ public class HomeSenderAdapter extends RecyclerView.Adapter<HomeSenderAdapter.Vi
     }
     //home_sender_address_menger_item_layout 跟HomeSenderAdapter公用
     @Override
-    public HomeSenderAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.home_sender_address_menger_item_layout,parent,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final HomeSenderAdapter.ViewHolder holder, final int position) {
-        holder.mTextUserName.setText(list.get(position).getName());
-        holder.mTextPhone.setText(list.get(position).getPhone());
-        holder.mTextAddressInfo.setText(list.get(position).getAddress());
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (onClickItemListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,7 +110,7 @@ public class HomeSenderAdapter extends RecyclerView.Adapter<HomeSenderAdapter.Vi
     }
 
     public interface OnClickItemListeren{
-         void onClickItem(View view,int postion);
+        void onClickItem(View view,int postion);
     }
 
     public OnClickItemListeren onClickItemListener;

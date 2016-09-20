@@ -24,4 +24,7 @@ public class Constant {
     public static final String Jpush_Tag_1 = "android";
     public static final String Jpush_Tag_2 = "androidUser";
     public static final String Jpush_Tag_3 = "user";
+
+    public static Integer HOME_SENDER_SIGN = -1;//寄件默认
+    public static Integer HOME_ADDRESSEE_SIGN = -1;//收件
 }
