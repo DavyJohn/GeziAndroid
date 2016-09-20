@@ -171,21 +171,24 @@
             </intent-filter>
 
         </activity>
+        //地图
         <activity android:name=".MapViewActivity"
             android:screenOrientation="portrait">
-
         </activity>
+        //登录
         <activity
             android:name=".activity.LoginActivity"
             android:configChanges="keyboardHidden"
             android:screenOrientation="portrait"/>
+        //设置
         <activity
             android:name=".activity.SettingActivity"
             android:screenOrientation="portrait"/>
+        //查看订单
         <activity
             android:name=".activity.MineOrderActivity"
             android:screenOrientation="portrait"/>
-        //
+        //创建订单
         <activity
             android:name=".activity.PlaceAnOrderActivity"
             android:screenOrientation="portrait"/>
@@ -246,6 +249,7 @@
             android:value="aeaeb86071"/>
         <!--高德-->
         <service android:name="com.amap.api.location.APSService"></service>
+
         <meta-data android:name="com.amap.api.v2.apikey"
                    android:value="09721c97b1d7635a0baa1652b5527784"/>
 

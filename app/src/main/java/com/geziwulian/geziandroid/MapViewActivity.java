@@ -71,7 +71,6 @@ public class MapViewActivity extends BaseActivity implements AMapLocationListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_main_activity);
         mMapView.onCreate(savedInstanceState);
-
         mEText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -106,26 +105,6 @@ public class MapViewActivity extends BaseActivity implements AMapLocationListene
             query = new PoiSearch.Query(charSequence.toString(),"",cityCode);
         }
         query.setPageSize(100);
-        poiSearch = new PoiSearch(mContext,query);
-        poiSearch.searchPOIAsyn();
-        poiSearch.setOnPoiSearchListener(new PoiSearch.OnPoiSearchListener() {
-            @Override
-            public void onPoiSearched(PoiResult poiResult, int i) {
-                if (i == 1000){
-                    if (poiResult != null && poiResult.getQuery() != null){
-                        if (poiResult.getQuery().equals(query)){
-
-                        }
-                    }
-                }
-
-            }
-
-            @Override
-            public void onPoiItemSearched(PoiItem poiItem, int i) {
-
-            }
-        });
     }
 
     @Override
