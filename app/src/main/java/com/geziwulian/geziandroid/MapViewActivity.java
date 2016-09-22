@@ -31,8 +31,6 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolylineOptions;
-import com.amap.api.services.core.PoiItem;
-import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 
 import java.util.ArrayList;
@@ -62,7 +60,6 @@ public class MapViewActivity extends BaseActivity implements AMapLocationListene
     private LocationSource.OnLocationChangedListener mListener;
     //绘制线
     List<LatLng> latLngs = new ArrayList<LatLng>();
-//    PolylienOptions polyline
     private double lat,lon;
     private boolean isClearnMap = false;
     private String cityCode;

@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class  MainActivity extends BaseActivity {
 
     private static final String TAG = getTagName(MainActivity.class);
 

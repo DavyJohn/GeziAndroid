@@ -87,4 +87,7 @@ dependencies {
     compile files('libs/AMap_3DMap_V3.4.0_20160809.jar')
     compile files('libs/AMap_Location_V2.9.0_20160906.jar')
     compile files('libs/AMap_Search_V3.4.0_20160811.jar')
+    //测试三级联动
+//    compile 'com.bigkoo:pickerview:2.1.1'
+    compile 'com.bigkoo:pickerview:2.0.8'
 }

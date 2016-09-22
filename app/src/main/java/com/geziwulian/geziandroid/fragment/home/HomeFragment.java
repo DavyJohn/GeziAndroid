@@ -1,5 +1,6 @@
 package com.geziwulian.geziandroid.fragment.home;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geziwulian.geziandroid.BaseFragment;
@@ -19,7 +21,10 @@ import com.geziwulian.geziandroid.fragment.home.activity.HomeConfirmInfoActivtiy
 import com.geziwulian.geziandroid.fragment.home.activity.HomeSenderActivity;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeAdapter;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeSenderAdapter;
+import com.geziwulian.geziandroid.utils.AddressData;
+import com.geziwulian.geziandroid.utils.Constant;
 import com.geziwulian.geziandroid.utils.DividerDecoration;
+import com.geziwulian.geziandroid.utils.MyContentProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +42,23 @@ public class HomeFragment extends BaseFragment {
     private boolean isPrepared;//初始化标志位
     private Unbinder unbinder;
     private HomeAdapter adapter;
+    @BindView(R.id.home_fragment_text_ji)
+    TextView mTextJi;
     @BindView(R.id.home_fragment_recyclerview)
     RecyclerView mRecycler;
     @BindView(R.id.home_fragment_clause_text)
     TextView  mTextClause;
+    @BindView(R.id.home_fragment_relative_ji)
+    RelativeLayout mRelative;
+    @BindView(R.id.home_fragment_ji_name)
+    TextView mTextJiName;
+    @BindView(R.id.home_fragment_ji_phone)
+    TextView mTextJiPhone;
+    @BindView(R.id.home_fragment_ji_address)
+    TextView mTextJiAddress;
+    @OnClick(R.id.home_fragment_clause_text) void clickClause(){
+        showToast("条款");
+    }
     @OnClick(R.id.home_fragment_Mailing) void clickMail(){
         startActivity(HomeSenderActivity.class);
     }
@@ -71,6 +89,7 @@ public class HomeFragment extends BaseFragment {
 
     private List<String> listName = new ArrayList<>();
     private List<Integer> listIcon = new ArrayList<>();
+    private List<AddressData> data = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,6 +107,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initView() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecycler.setLayoutManager(linearLayoutManager);
@@ -99,6 +119,30 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initData(){
+        if (Constant.HOME_SENDER_SIGN == -1){
+            //没有地址情况下
+            mRelative.setVisibility(View.GONE);
+            mTextJi.setVisibility(View.VISIBLE);
+        }else {
+            //有地址的情况下显示地址
+            mTextJi.setVisibility(View.GONE);
+            mRelative.setVisibility(View.VISIBLE);
+            Cursor cursor = mContext.getContentResolver().query(MyContentProvider.URI,null,null,null,null);
+            data.clear();
+            while (cursor.moveToNext()){
+                AddressData addressData = new AddressData();
+                String name = cursor.getString(cursor.getColumnIndex("userName"));
+                String phone = cursor.getString(cursor.getColumnIndex("userPhone"));
+                String address = cursor.getString(cursor.getColumnIndex("userAAddress"));
+                addressData.setName(name);
+                addressData.setAddress(address);
+                addressData.setPhone(phone);
+                data.add(addressData);
+            }
+            mTextJiAddress.setText(data.get(Constant.HOME_SENDER_SIGN).getAddress());
+            mTextJiName.setText(data.get(Constant.HOME_SENDER_SIGN).getName());
+            mTextJiPhone.setText(data.get(Constant.HOME_SENDER_SIGN).getPhone());
+        }
         listIcon.clear();
         listName.clear();
         for (int i=0;i<cpName.length;i++){
@@ -107,6 +151,7 @@ public class HomeFragment extends BaseFragment {
         }
         mRecycler.setAdapter(adapter);
         adapter.addData(listName,listIcon);
+        //快递公司图标
         adapter.setOnClickItemListener(new HomeAdapter.OnClickItemListener() {
             @Override
             public void OnClicItem(View view, int postion) {
@@ -114,8 +159,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
-
-
+//7.0 不管用
     @Override
     protected void lazyLoad() {
         if (!isPrepared ||!isVisible){
@@ -132,11 +176,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
-        //解绑
         unbinder.unbind();
-        //回收滚动
-
     }
 
 }

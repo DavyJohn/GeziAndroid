@@ -38,6 +38,7 @@ public class HomeSenderActivity extends BaseActivity {
     RecyclerView mRecycler;
     @OnClick(R.id.home_sender_address_menger_add_new_address) void addNewAddress(){
         startActivity(HomeAddAddressInfoActivity.class);
+
     }
     private List<AddressData> list = new ArrayList<>();
     private HomeSenderAdapter adapter;
@@ -47,6 +48,7 @@ public class HomeSenderActivity extends BaseActivity {
         setContentView(R.layout.home_sender_address_menger_layout);
         AppManager.getAppManager().addActivity(mContext);
         initView();
+        showLog("onCreate");
     }
 
     private void initView(){
@@ -76,12 +78,9 @@ public class HomeSenderActivity extends BaseActivity {
             AddressData data = new AddressData();
             String data1 = cursor.getString(cursor.getColumnIndex("userName"));
             data.setName(data1);
-            showLog(data1);
             String data2 = cursor.getString(cursor.getColumnIndex("userPhone"));
-            showLog(data2);
             data.setPhone(data2);
             String data3 = cursor.getString(cursor.getColumnIndex("userAAddress"));
-            showLog(data3);
             data.setAddress(data3);
             list.add(data);
         }
@@ -124,8 +123,8 @@ public class HomeSenderActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        showLog("onstart");
         if (!mSwipe.isRefreshing()) mSwipe.setRefreshing(true);
         initData();
     }
-
 }

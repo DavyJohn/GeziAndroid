@@ -232,6 +232,9 @@
         //确认信息
         <activity android:name=".fragment.home.activity.HomeConfirmInfoActivtiy"
             android:screenOrientation="portrait"/>
+        //webview
+        <activity android:name=".WebViewActivity"
+            android:screenOrientation="portrait"/>
         <provider
             android:authorities="com.geziwulian.geziandroid.utils.MyContentProvider"
             android:name=".utils.MyContentProvider"/>

@@ -34,9 +34,54 @@
                     android:layout_marginLeft="17dp"
                     android:layout_weight="1"
                     android:text="寄件人信息"
+                    android:id="@+id/home_fragment_text_ji"
                     android:textColor="@color/text_color_black"
                     android:textSize="17sp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/home_fragment_relative_ji"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/SomeTextColor"
+                        android:text="名字"
+                        android:textSize="14sp"
+                        android:id="@+id/home_fragment_ji_name"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="26dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/SomeTextColor"
+                        android:text="phone"
+                        android:textSize="14sp"
+                        android:id="@+id/home_fragment_ji_phone"
+                        android:layout_alignTop="@+id/home_fragment_ji_name"
+                        android:layout_toRightOf="@+id/home_fragment_ji_name"
+                        android:layout_toEndOf="@+id/home_fragment_ji_name"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="地址"
+                        android:textColor="@color/SomeTextColor"
+                        android:textSize="14sp"
+                        android:id="@+id/home_fragment_ji_address"
+                        android:layout_marginLeft="26dp"
+                        android:layout_marginStart="26dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="8dp"/>
 
+                </RelativeLayout>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
