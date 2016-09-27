@@ -10,7 +10,6 @@ import android.view.View;
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.fragment.home.adapter.HomeAddresseeAdapter;
-import com.geziwulian.geziandroid.fragment.home.adapter.HomeSenderAdapter;
 import com.geziwulian.geziandroid.utils.Constant;
 import com.geziwulian.geziandroid.utils.SimpleDividerItemDecoration;
 
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

@@ -30,6 +30,7 @@
             android:layout_weight="1"
             android:id="@+id/order_search_et_code"
             android:background="@null"
+            android:inputType="number"
             android:hint="请输入单号"
             android:maxLines="1"/>
 

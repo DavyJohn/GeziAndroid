@@ -1,5 +1,7 @@
 package com.geziwulian.geziandroid.fragment.home.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -8,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.geziwulian.geziandroid.AppManager;
 import com.geziwulian.geziandroid.BaseActivity;
@@ -27,6 +30,7 @@ import butterknife.OnClick;
 
 /**
  * Created by 志浩 on 2016/9/19.
+ * 管理寄件地址
  */
 public class HomeSenderActivity extends BaseActivity {
 
@@ -38,7 +42,6 @@ public class HomeSenderActivity extends BaseActivity {
     RecyclerView mRecycler;
     @OnClick(R.id.home_sender_address_menger_add_new_address) void addNewAddress(){
         startActivity(HomeAddAddressInfoActivity.class);
-
     }
     private List<AddressData> list = new ArrayList<>();
     private HomeSenderAdapter adapter;
@@ -48,7 +51,6 @@ public class HomeSenderActivity extends BaseActivity {
         setContentView(R.layout.home_sender_address_menger_layout);
         AppManager.getAppManager().addActivity(mContext);
         initView();
-        showLog("onCreate");
     }
 
     private void initView(){
@@ -72,7 +74,7 @@ public class HomeSenderActivity extends BaseActivity {
 
     private void initData(){
         //测试数据
-        Cursor cursor = getContentResolver().query(MyContentProvider.URI,null,null,null,null);
+        final Cursor cursor = getContentResolver().query(MyContentProvider.URI,null,null,null,null);
         list.clear();
         while (cursor.moveToNext()){
             AddressData data = new AddressData();
@@ -107,7 +109,15 @@ public class HomeSenderActivity extends BaseActivity {
         adapter.setOnClickEditListener(new HomeSenderAdapter.OnClickEditListener() {
             @Override
             public void onClickEdit(View view, int postion) {
-                showToast("编辑");
+                Cursor data = getContentResolver().query(MyContentProvider.URI,null,null,null,null);
+                List<Integer> lisdId = new ArrayList<Integer>();
+                while (data.moveToNext()){
+                    int id= data.getInt(data.getColumnIndex("_id"));
+                    lisdId.add(id);
+                }
+                Intent intent = new Intent(mContext,HomeEditAddressActivity.class);
+                intent.putExtra("key",lisdId.get(postion));
+                startActivity(intent);
             }
         });
 
@@ -123,8 +133,13 @@ public class HomeSenderActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        showLog("onstart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if (!mSwipe.isRefreshing()) mSwipe.setRefreshing(true);
         initData();
     }
+
 }

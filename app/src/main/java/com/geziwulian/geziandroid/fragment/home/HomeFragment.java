@@ -159,7 +159,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
-//7.0 不管用
+
     @Override
     protected void lazyLoad() {
         if (!isPrepared ||!isVisible){
@@ -168,8 +168,8 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         initData();
     }
 

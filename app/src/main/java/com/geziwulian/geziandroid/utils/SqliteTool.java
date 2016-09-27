@@ -8,6 +8,8 @@ import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.util.logging.StreamHandler;
 
 /**
  * Created by 志浩 on 2016/9/2.
@@ -45,7 +47,18 @@ public class SqliteTool {
             context.getContentResolver().insert(MyContentProvider.URI,values);
         }
     }
+    //修改数据
+    public void EditData(Context context,int key,String userName,String userPhone,String userAddress){
+        cursor = context.getContentResolver().query(MyContentProvider.URI,null,"_id=?",new String[]{String.valueOf(key)},null);
+        while (cursor.moveToNext()){
 
+        }
+        ContentValues values = new ContentValues();
+        values.put("userName",userName);
+        values.put("userPhone",userPhone);
+        values.put("userAAddress",userAddress);
+        context.getContentResolver().update(MyContentProvider.URI,values,"_id=?",new String[]{String.valueOf(key)});
+    }
     public void deleteData(Context context,String userAddress){
         context.getContentResolver().delete(MyContentProvider.URI,"userAAddress=?",new String[]{userAddress});
     }

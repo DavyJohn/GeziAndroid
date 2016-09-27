@@ -1,10 +1,12 @@
 package com.geziwulian.geziandroid.fragment.home.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -45,6 +47,7 @@ public class HomeAddAddressInfoActivity extends BaseActivity {
     @OnClick(R.id.home_add_address_info_location_text)
     void onClickLocation() {
         //startActivity(WebViewActivity.class);
+        hintKbTwo();
         pvOptions.show();
     }
 
@@ -91,11 +94,8 @@ public class HomeAddAddressInfoActivity extends BaseActivity {
         //  设置选择的三级单位
 //        pvOptions.setLabels("省", "市", "区");
         pvOptions.setTitle("选择城市");
-
         //  设置是否循环滚动
         pvOptions.setCyclic(false, false, false);
-
-
         // 设置默认选中的三级项目
         pvOptions.setSelectOptions(0, 0, 0);
 
@@ -117,7 +117,6 @@ public class HomeAddAddressInfoActivity extends BaseActivity {
                 mTextLocation.setText(address);
             }
         });
-
 
     }
 
@@ -188,6 +187,14 @@ public class HomeAddAddressInfoActivity extends BaseActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
         }
     }
 }
