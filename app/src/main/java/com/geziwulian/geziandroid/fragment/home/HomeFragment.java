@@ -24,6 +24,7 @@ import com.geziwulian.geziandroid.fragment.home.adapter.HomeSenderAdapter;
 import com.geziwulian.geziandroid.utils.AddressData;
 import com.geziwulian.geziandroid.utils.Constant;
 import com.geziwulian.geziandroid.utils.DividerDecoration;
+import com.geziwulian.geziandroid.utils.MyAddresseeProvider;
 import com.geziwulian.geziandroid.utils.MyContentProvider;
 
 import java.util.ArrayList;
@@ -50,12 +51,22 @@ public class HomeFragment extends BaseFragment {
     TextView  mTextClause;
     @BindView(R.id.home_fragment_relative_ji)
     RelativeLayout mRelative;
+    @BindView(R.id.home_fragment_relative_shou)
+    RelativeLayout mRelativeShou;
     @BindView(R.id.home_fragment_ji_name)
     TextView mTextJiName;
     @BindView(R.id.home_fragment_ji_phone)
     TextView mTextJiPhone;
     @BindView(R.id.home_fragment_ji_address)
     TextView mTextJiAddress;
+    @BindView(R.id.home_fragment_shou_name)
+    TextView mTextShouName;
+    @BindView(R.id.home_fragment_shou_phone)
+    TextView mTextShouPhone;
+    @BindView(R.id.home_fragment_shou_address)
+    TextView mTextShouAddress;
+    @BindView(R.id.home_fragment_shou_text)
+    TextView mTextShou;
     @OnClick(R.id.home_fragment_clause_text) void clickClause(){
         showToast("条款");
     }
@@ -90,6 +101,7 @@ public class HomeFragment extends BaseFragment {
     private List<String> listName = new ArrayList<>();
     private List<Integer> listIcon = new ArrayList<>();
     private List<AddressData> data = new ArrayList<>();
+    private Cursor cursor;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,6 +131,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initData(){
+        //寄件地址
         if (Constant.HOME_SENDER_SIGN == -1){
             //没有地址情况下
             mRelative.setVisibility(View.GONE);
@@ -127,7 +140,7 @@ public class HomeFragment extends BaseFragment {
             //有地址的情况下显示地址
             mTextJi.setVisibility(View.GONE);
             mRelative.setVisibility(View.VISIBLE);
-            Cursor cursor = mContext.getContentResolver().query(MyContentProvider.URI,null,null,null,null);
+            cursor = mContext.getContentResolver().query(MyContentProvider.URI,null,null,null,null);
             data.clear();
             while (cursor.moveToNext()){
                 AddressData addressData = new AddressData();
@@ -143,6 +156,27 @@ public class HomeFragment extends BaseFragment {
             mTextJiName.setText(data.get(Constant.HOME_SENDER_SIGN).getName());
             mTextJiPhone.setText(data.get(Constant.HOME_SENDER_SIGN).getPhone());
         }
+
+        if (Constant.HOME_ADDRESSEE_SIGN == -1){
+            mTextShou.setVisibility(View.VISIBLE);
+            mRelativeShou.setVisibility(View.GONE);
+        }else {
+            mTextShou.setVisibility(View.GONE);
+            mRelativeShou.setVisibility(View.VISIBLE);
+            cursor = mContext.getContentResolver().query(MyAddresseeProvider.URI,null,null,null,null);
+            data.clear();
+            while (cursor.moveToNext()){
+                AddressData aData = new AddressData();
+                aData.setName(cursor.getString(cursor.getColumnIndex("userAddresseeName")));
+                aData.setPhone(cursor.getString(cursor.getColumnIndex("userAddresseePhone")));
+                aData.setAddress(cursor.getString(cursor.getColumnIndex("userAddresseeInfo")));
+                data.add(aData);
+            }
+            mTextShouAddress.setText(data.get(Constant.HOME_ADDRESSEE_SIGN).getAddress());
+            mTextShouName.setText(data.get(Constant.HOME_ADDRESSEE_SIGN).getName());
+            mTextShouPhone.setText(data.get(Constant.HOME_ADDRESSEE_SIGN).getPhone());
+        }
+
         listIcon.clear();
         listName.clear();
         for (int i=0;i<cpName.length;i++){

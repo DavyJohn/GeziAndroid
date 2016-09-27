@@ -14,6 +14,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.geziwulian.geziandroid.AppManager;
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.utils.Constant;
 import com.geziwulian.geziandroid.utils.JsonFileReader;
 import com.geziwulian.geziandroid.utils.ProvinceBean;
 import com.geziwulian.geziandroid.utils.SqliteTool;
@@ -82,7 +83,6 @@ public class HomeAddAddressInfoActivity extends BaseActivity {
             }
         });
         pvOptions = new OptionsPickerView(mContext);
-
         //  获取json数据
         String province_data_json = JsonFileReader.getJson(this, "province_data.json");
         //  解析json数据
@@ -133,7 +133,12 @@ public class HomeAddAddressInfoActivity extends BaseActivity {
             phone = mEtPhone.getText().toString().trim();
             address = mEtDetail.getText().toString().trim();
             if (mEtName.getText().toString().length() != 0 && mEtPhone.getText().toString().length() != 0 && mEtDetail.getText().toString().length() != 0) {
-                SqliteTool.getInstance().addData(mContext, name, phone, address);
+                if (Constant.HOME_SAVE == 0){
+                    SqliteTool.getInstance().addData(mContext, name, phone, address);
+                }else if (Constant.HOME_SAVE == 1){
+                    SqliteTool.getInstance().addAddresseeData(mContext, name, phone, address);
+                }
+                Constant.HOME_SAVE = -1;
                 finish();
             }
         }

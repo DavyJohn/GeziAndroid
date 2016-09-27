@@ -41,6 +41,7 @@ public class HomeSenderActivity extends BaseActivity {
     @BindView(R.id.home_sender_address_menger_recycler)
     RecyclerView mRecycler;
     @OnClick(R.id.home_sender_address_menger_add_new_address) void addNewAddress(){
+        Constant.HOME_SAVE = 0;
         startActivity(HomeAddAddressInfoActivity.class);
     }
     private List<AddressData> list = new ArrayList<>();
@@ -109,6 +110,7 @@ public class HomeSenderActivity extends BaseActivity {
         adapter.setOnClickEditListener(new HomeSenderAdapter.OnClickEditListener() {
             @Override
             public void onClickEdit(View view, int postion) {
+                Constant.HOME_EDIT = 0;
                 Cursor data = getContentResolver().query(MyContentProvider.URI,null,null,null,null);
                 List<Integer> lisdId = new ArrayList<Integer>();
                 while (data.moveToNext()){

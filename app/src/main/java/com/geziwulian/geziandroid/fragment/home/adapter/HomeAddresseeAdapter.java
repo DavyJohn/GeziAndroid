@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.geziwulian.geziandroid.R;
+import com.geziwulian.geziandroid.utils.AddressData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +23,14 @@ import butterknife.ButterKnife;
 public class HomeAddresseeAdapter extends RecyclerView.Adapter<HomeAddresseeAdapter.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
-    private List<String> list = new ArrayList<>();
+    private List<AddressData> list = new ArrayList<>();
     private int num =-1;
     public HomeAddresseeAdapter(Context context){
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
-    public void addData(List<String> data,int postion){
+    public void addData(List<AddressData> data, int postion){
         list.clear();
         list.addAll(data);
         num = -1;
@@ -51,6 +52,9 @@ public class HomeAddresseeAdapter extends RecyclerView.Adapter<HomeAddresseeAdap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        holder.mTextAddressInfo.setText(list.get(position).getAddress());
+        holder.mTextPhone.setText(list.get(position).getPhone());
+        holder.mTextUserName.setText(list.get(position).getName());
         if (onClickItemListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -243,6 +243,9 @@
         <provider
             android:authorities="com.geziwulian.geziandroid.utils.MyContentProvider"
             android:name=".utils.MyContentProvider"/>
+        <provider
+            android:authorities="com.geziwulian.geziandroid.utils.MyAddresseeProvider"
+            android:name=".utils.MyAddresseeProvider"/>
         <!--Umeng-->
         <meta-data
             android:name="UMENG_APPKEY"

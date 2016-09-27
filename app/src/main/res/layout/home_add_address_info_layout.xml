@@ -55,6 +55,7 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:hint="请输入电话号码"
+            android:inputType="number"
             android:textSize="14sp"
             android:layout_marginLeft="40dp"
             android:id="@+id/home_add_address_info_phone_et"/>

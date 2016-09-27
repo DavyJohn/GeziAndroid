@@ -1,5 +1,7 @@
 package com.geziwulian.geziandroid.utils;
 
+import android.content.Intent;
+
 /**
  * Created by 志浩 on 2016/8/3.
  */
@@ -26,5 +28,7 @@ public class Constant {
     public static final String Jpush_Tag_3 = "user";
 
     public static Integer HOME_SENDER_SIGN = -1;//寄件默认
-    public static Integer HOME_ADDRESSEE_SIGN = -1;//收件
+    public static Integer HOME_ADDRESSEE_SIGN = -1;//收件默认
+    public static Integer HOME_SAVE = -1;//0:寄件保存 1：收件保存
+    public static Integer HOME_EDIT = -1;//0:寄件修改 1：收件修改
 }
