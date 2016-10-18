@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -41,11 +42,11 @@ public class WebViewActivity extends BaseActivity {
         });
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
+        mWebView.setWebChromeClient(new WebChromeClient(){});
+        mWebView.addJavascriptInterface(new JsInteration(),"interactive");
         try {
             //设置打开的页面地址
             mWebView.loadUrl("file:///android_asset/AddAddress.html");
-            mWebView.addJavascriptInterface(new WebAppInterface(mContext),"AddAddress");
-            String call = "javascript:name()";
         }
         catch(Exception ex)
         {
@@ -53,6 +54,21 @@ public class WebViewActivity extends BaseActivity {
         }
     }
 
+    private void interactive(WebView webview){
+        String call = "javascript:infoMessage()";
+        webview.loadUrl(call);
+    }
+    private class JsInteration{
+        @JavascriptInterface
+        public void message(String name,String phone,String city,String address){
+            if (name.length() == 0||phone.length() == 0 ||city.length() == 0||address.length() == 0){
+                showToast("填写数据不完整");
+            }else {
+                showToast("姓名："+name+"手机"+phone+"城市"+city+"地址"+address);
+            }
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,24 +79,10 @@ public class WebViewActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_save){
-
+            interactive(mWebView);
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public class WebAppInterface {
-        Context mContext;
-
-        /** Instantiate the interface and set the context */
-        WebAppInterface(Context c) {
-            mContext = c;
-        }
-
-        /** Show a toast from the web page */
-        @JavascriptInterface
-        public void showToast(String toast) {
-            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

@@ -67,7 +67,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.afollestad.material-dialogs:core:0.8.6.2'
-    compile 'com.github.JayFang1993:DropDownMenu:v0.9'//
+    compile 'com.github.JayFang1993:DropDownMenu:v0.9'
+    //
     compile 'com.kyleduo.switchbutton:library:1.4.4'
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
@@ -79,7 +80,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.8@aar'//
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.8@aar'
+    //
     compile files('libs/utdid4all-1.0.4.jar')
     compile files('libs/umeng-analytics-v6.0.1.jar')
     compile files('libs/jpush-android-2.1.7.jar')
@@ -88,6 +90,8 @@ dependencies {
     compile files('libs/AMap_Location_V2.9.0_20160906.jar')
     compile files('libs/AMap_Search_V3.4.0_20160811.jar')
     //测试三级联动
-//    compile 'com.bigkoo:pickerview:2.1.1'
-    compile 'com.bigkoo:pickerview:2.0.8'
+
+    //    compile 'com.bigkoo:pickerview:2.1.1'
+    compile 'com.bigkoo:pickerview:2.0.9'
+    compile 'com.android.support:cardview-v7:24.2.1'//
 }

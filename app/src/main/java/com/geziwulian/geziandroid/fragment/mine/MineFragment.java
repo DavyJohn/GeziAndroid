@@ -3,19 +3,14 @@ package com.geziwulian.geziandroid.fragment.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.activity.ChangeHeadActivity;
-import com.geziwulian.geziandroid.activity.LoginActivity;
-import com.geziwulian.geziandroid.activity.LoginDemoActivity;
-import com.geziwulian.geziandroid.activity.MineOrderActivity;
 import com.geziwulian.geziandroid.activity.SettingActivity;
 import com.geziwulian.geziandroid.fragment.mine.activity.MineAddressMengerActivity;
 import com.geziwulian.geziandroid.fragment.mine.activity.MineCouponActivity;
@@ -32,6 +27,7 @@ import butterknife.Unbinder;
 
 /**
  * Created by 志浩 on 2016/8/2.
+ *个人信息
  */
 public class MineFragment extends BaseFragment {
 
@@ -68,12 +64,11 @@ public class MineFragment extends BaseFragment {
         headerBg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"g个那个改头像",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getActivity(), ChangeHeadActivity.class));
             }
         });
         ImageView headImage = (ImageView) headView.findViewById(R.id.iv_user_head);
-        Picasso.with(getActivity()).load(R.mipmap.ic_launcher).transform(new CircleTransform()).into(headImage);
+        Picasso.with(getActivity()).load(R.drawable.demo).transform(new CircleTransform()).into(headImage);
         headView.findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.geziwulian.geziandroid.activity.LoginActivity;
+import com.geziwulian.geziandroid.activity.MainActivity;
 import com.geziwulian.netlibrary.model.ActionData;
 import com.google.gson.Gson;
 
@@ -100,14 +102,10 @@ public class JpushReceiver extends BroadcastReceiver {
 
     //send msg to MainActivity
     private void clickNotifaction(Context context,ActionData actionData){
-        if (actionData.type.equals("merchant")){
-            Toast.makeText(context,"merchant",Toast.LENGTH_SHORT).show();
-        }else if (actionData.type.equals("search")){
-            Toast.makeText(context,"search",Toast.LENGTH_SHORT).show();
-        }else if (actionData.type.equals("url")){
-            Toast.makeText(context,"url",Toast.LENGTH_SHORT).show();
-        }else if (actionData.type.equals("order")){
-            Toast.makeText(context,"order",Toast.LENGTH_SHORT).show();
-        }
+        // TODO: 2016/10/14
+        Toast.makeText(context,"点击效果",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(context,LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }

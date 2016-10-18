@@ -1,232 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:layout_marginTop="6dp">
+              android:layout_marginTop="6dp"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="顺丰快递"
             android:layout_gravity="center"
-            android:textSize="14sp"
+            android:layout_marginLeft="12dp"
+            android:text="顺丰快递"
             android:textColor="@color/text_color_black"
-            android:layout_marginLeft="12dp"/>
+            android:textSize="14sp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:textSize="14sp"
-            android:text="08月09日01：02"
-            android:layout_marginRight="12dp"
             android:layout_gravity="center"
-            android:gravity="end"/>
+            android:layout_marginRight="12dp"
+            android:gravity="end"
+            android:text="08月09日01：02"
+            android:textColor="@color/text_color_black"
+            android:textSize="14sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="下单成功"
+            android:textColor="@color/maincolor"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="到寄件点"
+            android:textColor="@color/maincolor"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="已揽件"
+            android:textColor="@color/maincolor"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="配送中"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="已签收"
+            android:gravity="center"/>
+
     </LinearLayout>
 
-    //
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:layout_marginTop="1dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/mine_express_handle_start_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="苏州张家港市"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:textSize="13sp"
-            android:textColor="@color/text_color_black"
-            android:id="@+id/mine_express_handle_start_address"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="到"
-            android:layout_gravity="center"
+            android:text="苏州张家港市"
             android:textColor="@color/text_color_black"
-            android:textSize="13sp"
+            android:textSize="13sp"/>
+
+        <TextView
             android:id="@+id/mine_express_handle"
-            android:layout_alignTop="@+id/mine_express_handle_end_address"
-            android:layout_centerHorizontal="true"/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="北京昭阳区"
+            android:layout_alignTop="@+id/mine_express_handle_end_address"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
+            android:text="到"
             android:textColor="@color/text_color_black"
-            android:textSize="13sp"
+            android:textSize="13sp"/>
+
+        <TextView
             android:id="@+id/mine_express_handle_end_address"
-            android:layout_marginRight="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_alignTop="@+id/mine_express_handle_start_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignTop="@+id/mine_express_handle_start_address"
+            android:layout_gravity="center"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:text="北京朝阳区"
+            android:textColor="@color/text_color_black"
+            android:textSize="13sp"/>
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/mine_express_handle_relative_zip_code"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
         android:layout_marginTop="1dp"
-        android:id="@+id/mine_express_handle_relative_zip_code">
+        android:background="@color/white">
+
         <TextView
+            android:id="@+id/mine_express_handle_zip_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:textSize="13sp"
-            android:text="寄件编号："
-            android:id="@+id/mine_express_handle_zip_code"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/include"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_alignTop="@+id/include"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:text="寄件编号："
+            android:textColor="@color/text_color_black"
+            android:textSize="13sp"/>
+
         <TextView
+            android:id="@+id/mine_express_handle_zip_code_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/mine_express_handle_zip_code"
+            android:layout_toEndOf="@+id/mine_express_handle_zip_code"
+            android:layout_toRightOf="@+id/mine_express_handle_zip_code"
             android:text="212540"
             android:textColor="@color/maincolor"
-            android:textSize="13sp"
-            android:layout_alignTop="@+id/mine_express_handle_zip_code"
-            android:layout_toRightOf="@+id/mine_express_handle_zip_code"
-            android:layout_toEndOf="@+id/mine_express_handle_zip_code"
-            android:id="@+id/mine_express_handle_zip_code_number"/>
+            android:textSize="13sp"/>
 
-        <include layout="@layout/vertical_line_layout"
-                 android:layout_height="20dp"
-                 android:layout_width="2dp"
-                 android:layout_centerVertical="true"
-                 android:layout_centerHorizontal="true"
-                 android:id="@+id/include"/>
+        <include
+            android:id="@+id/include"
+            layout="@layout/vertical_line_layout"
+            android:layout_width="2dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
         <TextView
+            android:id="@+id/mine_express_handle_freight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="运费："
-            android:textSize="13sp"
-            android:layout_marginRight="132dp"
-            android:layout_marginEnd="132dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/mine_express_handle_freight"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="132dp"
+            android:layout_marginRight="132dp"
+            android:text="运费："
+            android:textColor="@color/text_color_black"
+            android:textSize="13sp"/>
+
         <TextView
+            android:id="@+id/mine_express_handle_freight_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/maincolor"
-            android:textSize="13sp"
-            android:text="8元"
-            android:id="@+id/mine_express_handle_freight_number"
-            android:layout_alignTop="@+id/mine_express_handle_freight"
             android:layout_alignLeft="@+id/mine_express_handle_freight"
             android:layout_alignStart="@+id/mine_express_handle_freight"
+            android:layout_alignTop="@+id/mine_express_handle_freight"
             android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp"/>
+            android:layout_marginStart="40dp"
+            android:text="8元"
+            android:textColor="@color/maincolor"
+            android:textSize="13sp"/>
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/mine_express_handle_setting"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
         android:layout_marginTop="1dp"
-        android:id="@+id/mine_express_handle_setting">
+        android:background="@color/white">
+
         <TextView
+            android:id="@+id/mine_express_handle_cancle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/text_color_black"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_toLeftOf="@+id/include2"
+            android:layout_toStartOf="@+id/include2"
             android:drawableLeft="@mipmap/cancel_button"
-            android:textSize="13sp"
+            android:drawablePadding="5dp"
             android:gravity="center"
             android:text="取消寄件"
-            android:drawablePadding="5dp"
-            android:id="@+id/mine_express_handle_cancle"
-            android:layout_marginRight="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/include2"
-            android:layout_toStartOf="@+id/include2"/>
+            android:textColor="@color/text_color_black"
+            android:textSize="13sp"/>
 
-        <include layout="@layout/vertical_line_layout"
-                 android:layout_width="2dp"
-                 android:layout_height="20dp"
-                 android:id="@+id/include2"
-                 android:layout_alignBottom="@+id/mine_express_handle_details"
-                 android:layout_centerHorizontal="true"/>
+        <include
+            android:id="@+id/include2"
+            layout="@layout/vertical_line_layout"
+            android:layout_width="2dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/mine_express_handle_details"
+            android:layout_centerHorizontal="true"/>
+
         <TextView
+            android:id="@+id/mine_express_handle_details"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/text_color_black"
-            android:drawableLeft="@mipmap/details_btn"
-            android:textSize="13sp"
-            android:text="订单详情"
-            android:gravity="center"
-            android:drawablePadding="5dp"
-            android:id="@+id/mine_express_handle_details"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/include2"
             android:layout_toRightOf="@+id/include2"
-            android:layout_toEndOf="@+id/include2"/>
+            android:drawableLeft="@mipmap/details_btn"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="订单详情"
+            android:textColor="@color/text_color_black"
+            android:textSize="13sp"/>
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/mine_express_handle_reasult"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="1dp"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:id="@+id/mine_express_handle_reasult">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="原因"
             android:layout_gravity="center"
-            android:textSize="13sp"
             android:layout_marginLeft="12dp"
-            android:textColor="@color/text_color_black"/>
+            android:text="原因"
+            android:textColor="@color/text_color_black"
+            android:textSize="13sp"/>
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#9e9e9e"
-            android:hint="寄件码自动失效"
-            android:background="@null"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="寄件码自动失效"
+            android:textColor="#9e9e9e"
+            android:textSize="13sp"/>
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/mine_express_handle_cancle_setting"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/mine_express_handle_cancle_setting"
         android:layout_marginTop="1dp"
         android:background="@color/white">
 
         <TextView
+            android:id="@+id/mine_exoress_cancle_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="删除"
-            android:id="@+id/mine_exoress_cancle_setting"
-            android:drawableLeft="@mipmap/cancel_button"
-            android:layout_marginRight="12dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@mipmap/cancel_button"
+            android:text="删除"/>
     </RelativeLayout>
 
 </LinearLayout>

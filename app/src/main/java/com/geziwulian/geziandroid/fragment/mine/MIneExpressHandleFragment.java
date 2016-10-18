@@ -19,6 +19,7 @@ import butterknife.Unbinder;
 
 /**
  * Created by 志浩 on 2016/9/15.
+ * 快递处理中
  */
 public class MIneExpressHandleFragment extends BaseFragment implements View.OnClickListener {
 
@@ -32,6 +33,7 @@ public class MIneExpressHandleFragment extends BaseFragment implements View.OnCl
     TextView mTextDetails;
     private boolean isPrepared;
     private Unbinder unbinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +52,6 @@ public class MIneExpressHandleFragment extends BaseFragment implements View.OnCl
         isPrepared = true;
         lazyLoad();
     }
-
 
     @Override
     protected void lazyLoad() {

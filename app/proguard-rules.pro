@@ -112,3 +112,9 @@
     java.lang.Object readResolve();
 }
 
+-keepattributes *Annotation*
+-keepattributes JavascriptInterface
+-keep class com.example.javajsinteractiondemo$JsInteration {
+    *;
+}
+

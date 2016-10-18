@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geziwulian.geziandroid.R;
@@ -30,7 +29,7 @@ public class OrderSearchResultAdapter extends RecyclerView.Adapter<OrderSearchRe
     }
 
     public void addData(List<String> data){
-        list.clear();;
+        list.clear();
         list.addAll(data);
         notifyDataSetChanged();
     }
@@ -43,9 +42,12 @@ public class OrderSearchResultAdapter extends RecyclerView.Adapter<OrderSearchRe
 
     @Override
     public void onBindViewHolder(OrderSearchResultAdapter.ViewHolder holder, int position) {
-        if (position == 0){
+        if (list.size() != 0 && position == 0){
             holder.mTextData.setTextColor(ContextCompat.getColor(context,R.color.maincolor));
             holder.mTextTime.setTextColor(ContextCompat.getColor(context,R.color.maincolor));
+            holder.view.setBackgroundColor(ContextCompat.getColor(context,R.color.maincolor));
+        }else if (position == list.size()){
+            //TODO
         }
     }
 
@@ -55,8 +57,8 @@ public class OrderSearchResultAdapter extends RecyclerView.Adapter<OrderSearchRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.order_search_result_image)
-        ImageView mImage;
+        @BindView(R.id.order_search_result_item_view)
+        View view;
         @BindView(R.id.order_search_result_text_data)
         TextView mTextData;
         @BindView(R.id.order_search_result_text_time)
