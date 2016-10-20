@@ -49,7 +49,6 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <!--Jpush end-->
 
-
     <application
         android:name="BaseApplication"
         android:allowBackup="true"
