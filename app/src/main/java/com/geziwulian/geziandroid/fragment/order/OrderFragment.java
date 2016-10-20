@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import butterknife.Unbinder;
  */
 public class OrderFragment extends BaseFragment {
 
+    private boolean isPrepared;//初始化标志位
     @BindView(R.id.home_recycler)
     RecyclerView mRecycler;
     @BindView(R.id.home_swipe)
@@ -54,8 +56,10 @@ public class OrderFragment extends BaseFragment {
         ButterKnife.bind(this,view);
         unbinder = ButterKnife.bind(this,view);
         initView();
-        initDemo();
+        isPrepared = true;
+        lazyLoad();
 
+//        initDemo();
     }
 
     private  void initDemo(){
@@ -122,7 +126,6 @@ public class OrderFragment extends BaseFragment {
                 int index = viewHolder.getAdapterPosition();
                 // TODO: 2016/8/3
 
-
                 adapter.notifyItemRemoved(index);
             }
 
@@ -150,6 +153,17 @@ public class OrderFragment extends BaseFragment {
             }
         });
         swipeToDismissTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible){
+            //不执行lazyload
+        }else {
+            //执行lazyload
+            mSwipe.setRefreshing(true);
+            initDemo();
+        }
     }
 
     @Override

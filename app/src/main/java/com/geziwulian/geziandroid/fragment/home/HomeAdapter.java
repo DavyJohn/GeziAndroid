@@ -16,6 +16,7 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.geziwulian.geziandroid.R;
 import com.geziwulian.geziandroid.utils.Constant;
+import com.geziwulian.geziandroid.utils.DensityUtil;
 import com.geziwulian.geziandroid.utils.DisplayUtil;
 
 import com.geziwulian.netlibrary.model.ActionData;
@@ -133,7 +134,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         @Override
         public void UpdateUI(Context context, int position, BannerData data) {
             imageView.setTag(data);
-            Picasso.with(context).load(data.image_url).config(Bitmap.Config.RGB_565).resize(SCRRENT_WIDTH,SCRRENT_WIDTH*9/16).into(imageView);
+            Picasso.with(context).load(data.image_url).config(Bitmap.Config.RGB_565).resize(DensityUtil.dip2px(context,SCRRENT_WIDTH),DensityUtil.dip2px(context,SCRRENT_WIDTH*9/16)).centerCrop().into(imageView);
         }
 
         @Override

@@ -37,6 +37,11 @@ public class MineOrderPageLeftFragment extends BaseFragment {
     }
 
     @Override
+    protected void lazyLoad() {
+
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();

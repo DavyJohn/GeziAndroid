@@ -1,13 +1,19 @@
 package com.geziwulian.geziandroid.fragment.home;
 
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.geziwulian.geziandroid.BaseFragment;
 import com.geziwulian.geziandroid.R;
@@ -30,6 +36,7 @@ import rx.functions.Action1;
  */
 public class HomeFragment extends BaseFragment {
 
+    private boolean isPrepared;//初始化标志位
     @BindView(R.id.home_recycler)
     RecyclerView mRecycler;
     @BindView(R.id.home_swipe)
@@ -38,6 +45,26 @@ public class HomeFragment extends BaseFragment {
 
     private HomeAdapter adapter;
 
+    Thread bannerThread = new Thread(){
+        @Override
+        public void run() {
+            Message bannerMessage = new Message();
+            bannerMessage.what = 0;
+            mHanner.sendMessage(bannerMessage);
+        }
+    };
+
+    Handler mHanner = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    initBanner();
+                    break;
+            }
+        }
+    };
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +77,10 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        initBanner();
+//        bannerThread.run();
+        Log.e("HomeFragment执行","onViewCreated");
+        isPrepared = true;
+        lazyLoad();
     }
 
     private void initView() {
@@ -118,11 +148,24 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
+    protected void lazyLoad() {
+        if (!isPrepared ||!isVisible){
+            Log.e("HomeFraghment执行lazyload","不执行");
+        }else {
+            Log.e("HomeFraghment执行lazyload","执行");
+            mSwipe.setRefreshing(true);
+            initBanner();
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
+        mHanner.removeCallbacksAndMessages(null);
         //解绑
         unbinder.unbind();
         //回收滚动
         Constant.IS_CANLOOP = 0;
     }
+
 }

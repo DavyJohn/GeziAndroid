@@ -31,7 +31,7 @@ import static android.graphics.Bitmap.createBitmap;
 /**
  * Created by yyx on 16/3/17.
  */
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
     /**
      * LOG打印标签
@@ -45,6 +45,7 @@ public class BaseFragment extends Fragment {
     protected CompositeSubscription mCompositeSubscription;
 
     public Context mContext;
+    protected boolean isVisible;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -235,6 +236,31 @@ public class BaseFragment extends Fragment {
             intent.putExtras(bundle);
         }
         startActivityForResult(intent, requestCode);
+    }
+
+    //实行懒加载
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()){
+            //用户可见
+            isVisible = true;
+            onVisible();
+        }else {
+            //用户不可见
+            isVisible = false;
+            onInvisible();
+        }
+    }
+
+    protected void onVisible(){
+        lazyLoad();
+    }
+
+    protected abstract void lazyLoad();
+
+    protected void onInvisible(){
+        Log.e("用户看不见执行的操作=====","");
     }
 
     @Override

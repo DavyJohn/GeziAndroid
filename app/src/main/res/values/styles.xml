@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--app底部必须为透明不然滑动返回背景就为黑色-->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
 </resources>

@@ -69,13 +69,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView mItemTitle;
         @BindView(R.id.image_delete)
         public ImageView iSchedule;
+
         public View vBackground; // 背景
         public View vItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mItemTitle = (TextView) itemView.findViewById(R.id.item_title);
             ButterKnife.bind(this, itemView);
+            mItemTitle = (TextView) itemView.findViewById(R.id.item_title);
             vBackground = itemView.findViewById(R.id.linear_background);
             vItem = itemView.findViewById(R.id.content);
             iSchedule.setImageResource(R.drawable.delete_icon);

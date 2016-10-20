@@ -21,4 +21,8 @@ public class Constant {
 
     public static int IS_CANLOOP = 0; //0：不滚动
 
+
+    public static final String Jpush_Tag_1 = "android";
+    public static final String Jpush_Tag_2 = "androidUser";
+    public static final String Jpush_Tag_3 = "user";
 }

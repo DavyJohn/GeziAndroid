@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.geziwulian.geziandroid.BaseActivity;
 import com.geziwulian.geziandroid.R;
-import com.geziwulian.geziandroid.main.MainActivity;
+import com.geziwulian.geziandroid.utils.AppManager;
 import com.geziwulian.geziandroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -44,6 +44,7 @@ public class LoginDemoActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_demo_layout);
+        AppManager.getAppManager().addActivity(mContext);
         initView();
     }
 
